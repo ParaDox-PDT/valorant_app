@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sample_bloc_mobile/src/core/extension/extension.dart';
+import 'package:valorant_app/src/core/extension/extension.dart';
 
 Future<T?> customCupertinoModalPopup<T>(
   BuildContext context, {

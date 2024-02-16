@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample_bloc_mobile/src/core/extension/extension.dart';
+import 'package:valorant_app/src/core/extension/extension.dart';
+
 
 class StaggeredDotsWave extends StatefulWidget {
   const StaggeredDotsWave({

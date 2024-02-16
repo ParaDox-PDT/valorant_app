@@ -9,6 +9,13 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'config/router/app_routes.dart';
+
+import 'core/platform/network_info.dart';
+import 'data/source/local_source.dart';
+import 'presentation/bloc/main_bloc/main_bloc.dart';
+import 'presentation/bloc/splash_bloc/splash_bloc.dart';
+
 final sl = GetIt.instance;
 late Box<dynamic> _box;
 
@@ -17,7 +24,7 @@ Future<void> init() async {
   await initHive();
 
   sl.registerLazySingleton(
-        () => Dio()
+    () => Dio()
       ..options = BaseOptions(
         contentType: 'application/json',
         sendTimeout: const Duration(seconds: 30),
@@ -25,9 +32,6 @@ Future<void> init() async {
         connectTimeout: const Duration(seconds: 30),
         headers: {
           'Authorization': 'API-KEY',
-          'X-API-KEY': Constants.apiKey,
-          'Resource-Id': Constants.resourceId,
-          'Environment-Id': Constants.environmentId,
         },
       )
       ..interceptors.addAll(
@@ -36,30 +40,31 @@ Future<void> init() async {
             requestBody: kDebugMode,
             responseBody: kDebugMode,
             logPrint: (object) =>
-            kDebugMode ? log('dio: ${object.toString()}') : null,
+                kDebugMode ? log('dio: ${object.toString()}') : null,
           ),
           if (kDebugMode) chuck.getDioInterceptor(),
         ],
       ),
   );
   sl<Dio>().interceptors.add(
-    RetryInterceptor(
-      dio: sl<Dio>(),
-      toNoInternetPageNavigator: () async => Navigator.pushNamed(
-        rootNavigatorKey.currentContext!,
-        Routes.internetConnection,
-      ),
-      accessTokenGetter: () => localSource.accessToken,
-      refreshTokenFunction: () async {
-        await localSource.userClear();
-        await Navigator.pushNamedAndRemoveUntil(
-          rootNavigatorKey.currentContext!,
-          Routes.initial,
-              (route) => false,
-        );
-      }, logPrint: (String message) {  },
-    ),
-  );
+        RetryInterceptor(
+          dio: sl<Dio>(),
+          toNoInternetPageNavigator: () async => Navigator.pushNamed(
+            rootNavigatorKey.currentContext!,
+            Routes.internetConnection,
+          ),
+          // accessTokenGetter: () => localSource.accessToken,
+          // refreshTokenFunction: () async {
+          //   await localSource.userClear();
+          //   await Navigator.pushNamedAndRemoveUntil(
+          //     rootNavigatorKey.currentContext!,
+          //     Routes.initial,
+          //         (route) => false,
+          //   );
+          // },
+          logPrint: (String message) {},
+        ),
+      );
 
   sl
     ..registerSingleton<LocalSource>(LocalSource(_box))
@@ -68,14 +73,13 @@ Future<void> init() async {
   /// main
   mainFeature();
   homeFeature();
-
 }
 
 void mainFeature() {
   /// splash
-  // sl
-  //   ..registerFactory(SplashBloc.new)
-  //   ..registerLazySingleton(MainBloc.new);
+  sl
+    ..registerFactory(SplashBloc.new)
+    ..registerLazySingleton(MainBloc.new);
 }
 
 void homeFeature() {

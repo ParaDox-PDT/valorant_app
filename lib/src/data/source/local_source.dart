@@ -8,7 +8,7 @@ final class LocalSource {
 
   final Box<dynamic> box;
 
-  String get local => box.get(
+  String get locale => box.get(
         AppKeys.languageCode,
         defaultValue: defaultLocale,
       ) as String;

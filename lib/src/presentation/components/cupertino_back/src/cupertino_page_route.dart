@@ -1,4 +1,4 @@
-part of 'package:sample_bloc_mobile/src/presentation/components/cupertino_back/cupertino_back_gesture.dart';
+part of 'package:valorant_app/src/presentation/components/cupertino_back/cupertino_back_gesture.dart';
 
 const double _kMinFlingVelocity = 1; // Screen widths per second.
 

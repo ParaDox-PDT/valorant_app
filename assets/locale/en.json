@@ -1,7 +1,11 @@
 {
-  "home": "Home",
-  "services": "Services",
-  "entries": "Entries",
-  "profile": "Profile",
-  "settings": "Settings"
+  "guide": "Valorant Guide",
+  "agents": "Agents",
+  "weapons": "Weapons",
+  "ranks": "Ranks",
+  "sprays": "Sprays",
+  "player_cards": "Player Cards",
+  "maps": "Maps",
+  "gun_buddies": "Gun Buddies",
+  "wallpapers": "Wallpapers"
 }

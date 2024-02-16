@@ -1,7 +1,11 @@
 {
-  "home": "Главная",
-  "services": "Услуги",
-  "entries": "Записи",
-  "profile": "Профиль",
-  "settings": "Настройки"
+  "guide": "Руководство по Valorant",
+  "agents": "Агенты",
+  "weapons": "Оружие",
+  "ranks": "Звания",
+  "sprays": "Спреи",
+  "player_cards": "Карты игроков",
+  "maps": "Карты",
+  "gun_buddies": "Друзья по оружию",
+  "wallpapers": "Обои"
 }

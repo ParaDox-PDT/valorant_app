@@ -1,6 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:sample_bloc_mobile/src/core/extension/extension.dart';
+import 'package:valorant_app/src/core/extension/extension.dart';
 
 class CustomDropDown<T> extends StatelessWidget {
   const CustomDropDown({

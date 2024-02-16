@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_bloc_mobile/src/core/constants/constants.dart';
+import 'package:valorant_app/src/core/constants/constants.dart';
 
 class BouncingButton extends StatefulWidget {
   /// BouncingWidget constructor

@@ -3,7 +3,7 @@ import 'dart:isolate';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sample_bloc_mobile/src/config/router/app_routes.dart';
+import 'package:valorant_app/src/config/router/app_routes.dart';
 
 class CachedNetworkSvgImage extends StatelessWidget {
   const CachedNetworkSvgImage({

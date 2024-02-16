@@ -9,7 +9,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'src/app.dart';
 import 'src/app_options.dart';
 import 'src/config/router/app_routes.dart';
-import 'src/core/services/notification_service.dart';
+import 'src/core/service/notification_service.dart';
 import 'src/injector_container.dart';
 import 'src/presentation/bloc/log_bloc_observer.dart';
 

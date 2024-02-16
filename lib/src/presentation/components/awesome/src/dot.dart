@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_app/src/core/extension/extension.dart';
 
 class Dot extends StatelessWidget {
   const Dot({
