@@ -9,4 +9,5 @@ sealed class AppImages {
   static const String ranks = 'assets/images/ranks.png';
   static const String sprays = 'assets/images/sprays.png';
   static const String weapons = 'assets/images/weapons.png';
+  static const String wallpapers = 'assets/images/wallpapers.png';
 }

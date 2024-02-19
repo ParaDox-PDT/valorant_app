@@ -18,10 +18,11 @@ class _MainPageState extends State<MainPage> {
             statusBarIconBrightness: Brightness.light,
           ),
         ),
-    body: Column(
-      children: [
-        Text('guide'.tr)
-      ],
-    ),
+        body: Column(
+          children: [
+            Text('guide'.tr, style: AppTypography.t1Regular),
+            const MainPageButtons()
+          ],
+        ),
       );
 }
