@@ -6,17 +6,17 @@ final appTheme = ThemeData(
   pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
       TargetPlatform.android:
-      CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
+          CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
       TargetPlatform.iOS:
-      CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
+          CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
       TargetPlatform.macOS:
-      CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
+          CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
       TargetPlatform.windows:
-      CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
+          CupertinoPageTransitionsBuilderCustomBackGestureWidth(),
     },
   ),
   splashFactory:
-  Platform.isAndroid ? InkRipple.splashFactory : NoSplash.splashFactory,
+      Platform.isAndroid ? InkRipple.splashFactory : NoSplash.splashFactory,
   visualDensity: VisualDensity.standard,
   materialTapTargetSize: MaterialTapTargetSize.padded,
   textButtonTheme: const TextButtonThemeData(
@@ -70,10 +70,10 @@ final ThemeData lightTheme = appTheme.copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       foregroundColor: MaterialStateProperty.resolveWith(
-            (states) => Colors.white,
+        (states) => Colors.white,
       ),
       backgroundColor: MaterialStateProperty.resolveWith(
-            (states) {
+        (states) {
           if (states.contains(MaterialState.disabled)) {
             return Colors.grey;
           }
@@ -105,7 +105,7 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 4,
-    backgroundColor: Colors.white,
+    backgroundColor:  colorLightScheme.primary,
     type: BottomNavigationBarType.fixed,
     showSelectedLabels: true,
     selectedLabelStyle: const TextStyle(fontSize: 12),
@@ -139,36 +139,41 @@ final ThemeData lightTheme = appTheme.copyWith(
     backgroundColor: Colors.white,
     height: kToolbarHeight,
     iconTheme: MaterialStateProperty.resolveWith<IconThemeData>(
-          (states) => const IconThemeData(
+      (states) => const IconThemeData(
         color: Colors.black,
       ),
     ),
     labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
-          (states) => ThemeTextStyles.light.appBarTitle,
+      (states) => ThemeTextStyles.light.appBarTitle,
     ),
   ),
   appBarTheme: AppBarTheme(
+
     elevation: 1,
     scrolledUnderElevation: 0,
-    systemOverlayStyle: const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      systemNavigationBarColor:  colorLightScheme.primary,
       // ios
       statusBarBrightness: Brightness.light,
       // android
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: colorLightScheme.primary,
+      statusBarIconBrightness: Brightness.light,
+
+      systemNavigationBarIconBrightness: Brightness.light,
     ),
-    iconTheme: const IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.red,),
+    centerTitle: true,
     shadowColor: Colors.black45,
     titleTextStyle: const TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w600,
-      fontSize: 17,
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      fontSize: 20,
+      fontFamily: 'Bowlby One SC',
     ),
+
     toolbarTextStyle: ThemeTextStyles.light.appBarTitle,
-    backgroundColor: Colors.white,
-    surfaceTintColor: Colors.white,
+    backgroundColor:colorLightScheme.primary,
+    surfaceTintColor:colorLightScheme.primary,
   ),
   listTileTheme: const ListTileThemeData(
     iconColor: Color(0xFF242424),

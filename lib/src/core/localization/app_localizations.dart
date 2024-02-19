@@ -39,7 +39,6 @@ final class AppLocalizations {
   static const List<Locale> supportedLocales = [
     Locale('en', 'US'),
     Locale('ru', 'RU'),
-    Locale('uz', 'UZ'),
   ];
 }
 
@@ -48,7 +47,7 @@ class TranslationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   bool isSupported(Locale locale) =>
-      ['ru', 'uz', 'en'].contains(locale.languageCode);
+      ['ru', 'en'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async =>

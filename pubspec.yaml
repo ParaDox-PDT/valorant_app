@@ -15,6 +15,8 @@ dependencies:
   intl: ^0.18.1
   # hive no sql database
   hive: ^2.2.3
+  hive_generator: ^2.0.1
+  hive_flutter: ^1.1.0
   # path
   path_provider: ^2.1.1
   # get it singleton
@@ -54,6 +56,8 @@ dependencies:
   go_router: ^13.2.0
   #zoom tap
   zoom_tap_animation: ^1.1.0
+  #animation
+  animate_do: ^3.3.3
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +76,7 @@ flutter:
     - assets/locale/
     - assets/fonts/
     - assets/images/
+    - assets/icons/
   fonts:
     - family: AppIcons
       fonts:

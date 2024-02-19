@@ -8,4 +8,8 @@ sealed class Routes{
 
   // main
   static const String home = '/home';
+
+  //agents
+  static const String agents = '/agents';
+
 }

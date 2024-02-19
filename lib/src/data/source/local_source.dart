@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
+import 'package:valorant_app/src/data/models/agents/agents_response.dart';
 
 final class LocalSource {
   const LocalSource(this.box);
@@ -26,6 +27,18 @@ final class LocalSource {
     await box.put(AppKeys.languageCode, lang);
   }
 
+  Future<void> setAgents(Agents agents) async {
+    debugPrint('SERTTT T========>>>>${agents}');
+    await box.put(AppKeys.agents, agents);
+  }
+
+  Agents? getAgents() {
+    debugPrint('GETTT T========>>>>${box.get(AppKeys.agents)}');
+    return box.get(
+      AppKeys.agents,
+    );
+  }
+
   Future<void> setKey(String key, String value) async {
     await box.put(key, value);
   }
@@ -47,3 +60,9 @@ final class LocalSource {
     await box.clear();
   }
 }
+
+HiveInterface hiveRegister() => Hive
+  ..registerAdapter(AgentsAdapter())
+  ..registerAdapter(AgentsDataAdapter())
+  ..registerAdapter(AgentsRoleAdapter())
+  ..registerAdapter(AgentsAbilitiesAdapter());

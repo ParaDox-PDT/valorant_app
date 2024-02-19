@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valorant_app/src/data/source/local_source.dart';
 import 'package:valorant_app/src/injector_container.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/main_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:valorant_app/src/presentation/pages/internet_connection/internet_connection_part.dart';
+import 'package:valorant_app/src/presentation/pages/main/agents/agents_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/main_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/splash/splash_page_part.dart';
-
 
 part 'name_routes.dart';
 
@@ -34,7 +35,6 @@ final GoRouter router = GoRouter(
       ),
     ),
 
-
     ///home
     GoRoute(
       name: Routes.home,
@@ -51,6 +51,19 @@ final GoRouter router = GoRouter(
           opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
           child: child,
         ),
+      ),
+    ),
+
+    /// agents
+    GoRoute(
+      path: Routes.agents,
+      name: Routes.agents,
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<AgentsBloc>()
+          ..add(
+            const AgentsGetAllInfoEvent(),
+          ),
+        child: const AgentsPage(),
       ),
     ),
 

@@ -1,50 +1,66 @@
 part of '../main_page_part.dart';
 
 class MainPageButtons extends StatelessWidget {
-  const MainPageButtons({super.key});
+  const MainPageButtons(
+      {super.key,
+      required this.titles,
+      required this.images,
+      required this.onTaps});
+
+  final List<String> titles;
+  final List<String> images;
+  final List<VoidCallback> onTaps;
 
   @override
-  Widget build(BuildContext context) =>  Expanded(
-    child: ListView(
-      padding: AppUtils.kPaddingAll16,
-      children: [
-        MainPageButton(
-          title: 'agents'.tr,
-          image: AppImages.agents,
-          onTap: () {},
+  Widget build(BuildContext context) => Expanded(
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: AppUtils.kPaddingAll16,
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    ...List.generate(
+                      titles.length,
+                      (index) {
+                        if(index == 0){
+                          return SlideInDown(
+                            child: MainPageButton(
+                              title: titles[index],
+                              image: images[index],
+                              onTap: onTaps[index],
+                            ),
+                          );
+                        }
+                      else  if (index.isEven) {
+                          return SlideInLeft(
+                            child: MainPageButton(
+                              title: titles[index],
+                              image: images[index],
+                              onTap: onTaps[index],
+                            ),
+                          );
+                        } else {
+                          return SlideInRight(
+                            child: MainPageButton(
+                              title: titles[index],
+                              image: images[index],
+                              onTap: onTaps[index],
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                    SlideInUp(
+                      child: MainPageWallpapersButton(
+                        onTap: () {},
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
-        MainPageButton(
-          title: 'weapons'.tr,
-          image: AppImages.weapons,
-          onTap: () {},
-        ),
-        MainPageButton(
-          title: 'ranks'.tr,
-          image: AppImages.ranks,
-          onTap: () {},
-        ),
-        MainPageButton(
-          title: 'sprays'.tr,
-          image: AppImages.sprays,
-          onTap: () {},
-        ),
-        MainPageButton(
-          title: 'player_cards'.tr,
-          image: AppImages.playerCards,
-          onTap: () {},
-        ),
-        MainPageButton(
-          title: 'maps'.tr,
-          image: AppImages.playerCards,
-          onTap: () {},
-        ),
-        MainPageButton(
-          title: 'gun_buddies'.tr,
-          image: AppImages.gunBuddies,
-          onTap: () {},
-        ),
-        MainPageWallpapersButton(onTap: (){})
-      ],
-    ),
-  );
+      );
 }

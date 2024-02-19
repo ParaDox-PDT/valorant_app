@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:valorant_app/src/core/constants/constants.dart';
+import 'package:valorant_app/src/domain/repositories/agents/agents_repository.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 
 import 'config/router/app_routes.dart';
 
@@ -26,14 +29,11 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => Dio()
       ..options = BaseOptions(
-        contentType: 'application/json',
-        sendTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        connectTimeout: const Duration(seconds: 30),
-        headers: {
-          'Authorization': 'API-KEY',
-        },
-      )
+          contentType: 'application/json',
+          sendTimeout: const Duration(seconds: 30),
+          receiveTimeout: const Duration(seconds: 30),
+          connectTimeout: const Duration(seconds: 30),
+          baseUrl: Constants.baseUrl)
       ..interceptors.addAll(
         [
           LogInterceptor(
@@ -53,15 +53,6 @@ Future<void> init() async {
             rootNavigatorKey.currentContext!,
             Routes.internetConnection,
           ),
-          // accessTokenGetter: () => localSource.accessToken,
-          // refreshTokenFunction: () async {
-          //   await localSource.userClear();
-          //   await Navigator.pushNamedAndRemoveUntil(
-          //     rootNavigatorKey.currentContext!,
-          //     Routes.initial,
-          //         (route) => false,
-          //   );
-          // },
           logPrint: (String message) {},
         ),
       );
@@ -72,7 +63,7 @@ Future<void> init() async {
 
   /// main
   mainFeature();
-  homeFeature();
+  agentsFeature();
 }
 
 void mainFeature() {
@@ -82,8 +73,14 @@ void mainFeature() {
     ..registerLazySingleton(MainBloc.new);
 }
 
-void homeFeature() {
-  // sl.registerFactory<HomeBloc>(HomeBloc.new);
+void agentsFeature() {
+  sl
+    ..registerFactory<AgentsBloc>(
+      () => AgentsBloc(sl()),
+    )
+    ..registerLazySingleton<AgentsRepository>(
+      () => AgentsRepositoryImpl(dio: sl()),
+    );
 }
 
 Future<void> initHive() async {

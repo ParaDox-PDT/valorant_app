@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.2.0"
+  animate_do:
+    dependency: "direct main"
+    description:
+      name: animate_do
+      sha256: "8a9d0f91d066d5f86bd9de9455e5741e6bbb284b114c76375f01584065dd3da1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.3"
   ansicolor:
     dependency: transitive
     description:
@@ -597,8 +605,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
+  hive_flutter:
+    dependency: "direct main"
+    description:
+      name: hive_flutter
+      sha256: dca1da446b1d808a51689fb5d0c6c9510c0a2ba01e22805d492c73b68e33eecc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   hive_generator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: hive_generator
       sha256: "06cb8f58ace74de61f63500564931f9505368f45f98958bd7a6c35ba24159db4"

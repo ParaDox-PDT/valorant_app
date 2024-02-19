@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:valorant_app/src/data/source/local_source.dart';
 
 import 'src/app.dart';
 import 'src/app_options.dart';
@@ -13,10 +14,10 @@ import 'src/core/service/notification_service.dart';
 import 'src/injector_container.dart';
 import 'src/presentation/bloc/log_bloc_observer.dart';
 
-
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  hiveRegister();
 
   if (defaultTargetPlatform != TargetPlatform.linux &&
       defaultTargetPlatform != TargetPlatform.windows) {

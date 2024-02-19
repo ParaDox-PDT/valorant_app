@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'app_options.dart';
 import 'config/router/app_routes.dart';
 import 'config/themes/themes.dart';
-import 'core/extension/extension.dart';
 import 'core/localization/app_localizations.dart';
 
 

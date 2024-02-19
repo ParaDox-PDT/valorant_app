@@ -27,9 +27,6 @@ class _SplashPageState extends State<SplashPage> {
             backgroundColor: context.theme.primaryColor,
             appBar: AppBar(
               toolbarHeight: 0,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: context.theme.primaryColor,
-                  statusBarIconBrightness: Brightness.light),
             ),
             body: DecoratedBox(
               decoration: BoxDecoration(

@@ -5,5 +5,6 @@ sealed class AppKeys{
   static const String languageCode = 'languageCode';
   static const String themeMode = 'theme_mode';
   static const String langSelected = 'lang_selected';
+  static const String agents = 'agents';
 
 }
