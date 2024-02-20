@@ -16,3 +16,10 @@ String get getApiLocale => switch (defaultSystemLocale) {
       'en' => 'en-US',
       _ => 'ru-RU',
     };
+
+Color hexToColor(String hexColor) {
+  if (hexColor.length != 8) {
+    throw FormatException('Invalid hex color: $hexColor');
+  }
+  return Color(int.parse(hexColor.substring(0, 6), radix: 16) + 0xFF000000);
+}

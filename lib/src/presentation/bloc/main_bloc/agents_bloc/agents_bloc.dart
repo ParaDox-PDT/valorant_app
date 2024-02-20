@@ -20,12 +20,18 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
 
   Future<void> _onGetAgents(
       AgentsGetAllInfoEvent event, Emitter<AgentsState> emit) async {
-    final Agents? agents = localSource.getAgents();
-    if (agents != null) {
+    List<AgentsData> agents = [];
+    final Agents? agent = localSource.getAgents();
+    if (agent != null) {
+      for (final e in agent.data ?? []) {
+        if(e.uuid != 'ded3520f-4264-bfed-162d-b080e2abccf9'){
+          agents.add(e);
+        }
+      }
       emit(
         state.copyWith(
           status: BlocStatus.loading,
-          agents: agents.data,
+          agents: agent.data,
         ),
       );
     } else {
@@ -36,7 +42,8 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
       );
     }
 
-    final result = await agentsRepository.getAgents();
+    final result = await agentsRepository.getAgents() ;
+
     result.fold(
       (l) {
         emit(
@@ -44,8 +51,14 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
         );
       },
       (r) {
+        agents=[];
+        for (final e in r.data ?? []) {
+          if(e.uuid != 'ded3520f-4264-bfed-162d-b080e2abccf9'){
+            agents.add(e);
+          }
+        }
         emit(
-          state.copyWith(status: BlocStatus.success, agents: r.data),
+          state.copyWith(status: BlocStatus.success, agents:agents),
         );
         localSource.setAgents(r);
       },

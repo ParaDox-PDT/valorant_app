@@ -58,6 +58,8 @@ dependencies:
   zoom_tap_animation: ^1.1.0
   #animation
   animate_do: ^3.3.3
+  #shimmer
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

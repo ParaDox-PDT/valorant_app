@@ -15,29 +15,30 @@ class _AgentsPageState extends State<AgentsPage> {
           backgroundColor: context.theme.primaryColor,
           body: CustomScrollView(
             slivers: [
-              SliverAppBar(
-                pinned: true,
-                leading: IconButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  icon: SvgPicture.asset(AppIcons.backArrow),
-                ),
-                title: Text(
-                  'agents'.tr,
-                ),
+              CustomSliverAppBar(
+                title: 'agents'.tr,
               ),
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  List.generate(
-                    state.agents.length,
-                    (index) => Text(
-                      state.agents[index].displayName ?? 'null',
-                      style: AppTypography.h1Bold,
-                    ),
+              SliverPadding(
+                padding: AppUtils.kPaddingAll16,
+                sliver: SliverGrid(
+                  delegate: SliverChildListDelegate(
+                    state.agents.isEmpty && state.status == BlocStatus.loading
+                        ? agentsListShimmer(context)
+                        : List.generate(
+                            state.agents.length,
+                            (index) {
+                              final AgentsData agent = state.agents[index];
+                              return AgentsItem(agent: agent);
+                            },
+                          ),
                   ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 152.w / 260.h,
+                      crossAxisSpacing: 26.w,
+                      mainAxisSpacing: 32.h,
+                      crossAxisCount: 2),
                 ),
-              ),
+              )
             ],
           ),
         ),
