@@ -28,16 +28,12 @@ final class LocalSource {
   }
 
   Future<void> setAgents(Agents agents) async {
-    debugPrint('SERTTT T========>>>>${agents}');
     await box.put(AppKeys.agents, agents);
   }
 
-  Agents? getAgents() {
-    debugPrint('GETTT T========>>>>${box.get(AppKeys.agents)}');
-    return box.get(
+  Agents? getAgents() => box.get(
       AppKeys.agents,
     );
-  }
 
   Future<void> setKey(String key, String value) async {
     await box.put(key, value);
@@ -53,7 +49,7 @@ final class LocalSource {
         'system' => ThemeMode.system,
         'light' => ThemeMode.light,
         'dark' => ThemeMode.dark,
-        _ => ThemeMode.system,
+        _ => ThemeMode.light,
       };
 
   Future<void> clear() async {

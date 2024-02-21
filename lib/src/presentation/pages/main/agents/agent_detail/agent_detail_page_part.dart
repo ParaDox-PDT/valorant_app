@@ -12,6 +12,7 @@ import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agent_detail_response.dart';
 import 'package:valorant_app/src/data/models/bloc_status.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
+import 'package:valorant_app/src/presentation/components/loading_widgets/staggered_dots_wave.dart';
 
 
 part 'agent_detail_page.dart';

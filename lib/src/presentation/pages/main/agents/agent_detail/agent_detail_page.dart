@@ -22,9 +22,7 @@ class _AgentDetailPageState extends State<AgentDetailPage>
           extendBodyBehindAppBar: true,
           body: state.agentDetailStatus == BlocStatus.loading
               ? Center(
-                  child: CircularProgressIndicator(
-                    color: context.colorScheme.secondary,
-                  ),
+                  child: StaggeredDotsWave(size: 50,color: context.colorScheme.secondary,)
                 )
               : CustomScrollView(
                   slivers: [

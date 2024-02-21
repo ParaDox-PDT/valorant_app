@@ -3,18 +3,20 @@ part of 'utils.dart';
 final String defaultSystemLocale = Platform.localeName.split('_').first;
 
 String get defaultLocale => switch (defaultSystemLocale) {
-      'ru' => 'ru',
+      'ru' => 'en',
       'en' => 'en',
-      _ => 'ru',
+      _ => 'en',
     };
 
 String get defaultTheme =>
     SchedulerBinding.instance.platformDispatcher.platformBrightness.name;
 
+//TODO tilni to'g'irlash uchun
+
 String get getApiLocale => switch (defaultSystemLocale) {
-      'ru' => 'ru-RU',
+      'ru' => 'en-US',
       'en' => 'en-US',
-      _ => 'ru-RU',
+      _ => 'en-US',
     };
 
 Color hexToColor(String hexColor) {

@@ -25,7 +25,7 @@ class MainPageButton extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 30.w),
+                      padding: EdgeInsets.only(left: 16.w),
                       child: Text(
                         title,
                         style: AppTypography.h2Regular,
