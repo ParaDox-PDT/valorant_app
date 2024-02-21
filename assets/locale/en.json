@@ -1,11 +1,22 @@
 {
   "guide": "Valorant Guide",
   "agents": "Agents",
+  "agent_detail": "Agent Detail",
   "weapons": "Weapons",
   "ranks": "Ranks",
   "sprays": "Sprays",
   "player_cards": "Player Cards",
   "maps": "Maps",
   "gun_buddies": "Gun Buddies",
-  "wallpapers": "Wallpapers"
+  "wallpapers": "Wallpapers",
+  "type": "Type",
+  "role": "Role",
+  "slot": "Slot",
+  "agent_name": "Agent Name",
+  "point_ultimate": "Points for Ultimate",
+  "description": "Description",
+  "abilities": "Abilities",
+  "incendiary": "Incendiary",
+  "cost": "Cost",
+  "origin": "Origin"
 }

@@ -1,7 +1,9 @@
 part of 'agents_page_part.dart';
 
 class AgentsPage extends StatefulWidget {
-  const AgentsPage({super.key});
+  const AgentsPage({
+    super.key,
+  });
 
   @override
   State<AgentsPage> createState() => _AgentsPageState();
@@ -28,7 +30,13 @@ class _AgentsPageState extends State<AgentsPage> {
                             state.agents.length,
                             (index) {
                               final AgentsData agent = state.agents[index];
-                              return AgentsItem(agent: agent);
+                              if (index.isEven) {
+                                return SlideInLeft(
+                                    child: AgentsItem(agent: agent));
+                              } else {
+                                return SlideInRight(
+                                    child: AgentsItem(agent: agent));
+                              }
                             },
                           ),
                   ),

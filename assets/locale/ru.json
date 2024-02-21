@@ -1,11 +1,22 @@
 {
   "guide": "Руководство по Valorant",
   "agents": "Агенты",
+  "agent_detail": "Детали Агента",
   "weapons": "Оружие",
   "ranks": "Звания",
   "sprays": "Спреи",
   "player_cards": "Карты игроков",
   "maps": "Карты",
   "gun_buddies": "Друзья по оружию",
-  "wallpapers": "Обои"
+  "wallpapers": "Обои",
+  "type": "Тип",
+  "role": "Роль",
+  "slot": "Слот",
+  "agent_name": "Имя Агента",
+  "point_ultimate": "Очко за Ultimate",
+  "description": "Описание",
+  "abilities": "Способности",
+  "incendiary": "Зажигательный",
+  "cost": "Стоимость",
+  "origin": "Источник"
 }

@@ -11,5 +11,6 @@ sealed class Routes{
 
   //agents
   static const String agents = '/agents';
+  static const String agentDetail = '/agent_detail';
 
 }

@@ -10,6 +10,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/domain/repositories/agents/agents_repository.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 
 import 'config/router/app_routes.dart';
@@ -64,6 +65,7 @@ Future<void> init() async {
   /// main
   mainFeature();
   agentsFeature();
+  agentDetailFeature();
 }
 
 void mainFeature() {
@@ -81,6 +83,12 @@ void agentsFeature() {
     ..registerLazySingleton<AgentsRepository>(
       () => AgentsRepositoryImpl(dio: sl()),
     );
+}
+
+void agentDetailFeature() {
+  sl
+    .registerFactory<AgentDetailBloc>(
+        () => AgentDetailBloc(agentsRepository: sl()));
 }
 
 Future<void> initHive() async {

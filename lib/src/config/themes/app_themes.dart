@@ -105,7 +105,7 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 4,
-    backgroundColor:  colorLightScheme.primary,
+    backgroundColor: colorLightScheme.primary,
     type: BottomNavigationBarType.fixed,
     showSelectedLabels: true,
     selectedLabelStyle: const TextStyle(fontSize: 12),
@@ -148,11 +148,10 @@ final ThemeData lightTheme = appTheme.copyWith(
     ),
   ),
   appBarTheme: AppBarTheme(
-
     elevation: 1,
     scrolledUnderElevation: 0,
     systemOverlayStyle: SystemUiOverlayStyle(
-      systemNavigationBarColor:  colorLightScheme.primary,
+      systemNavigationBarColor: colorLightScheme.primary,
       // ios
       statusBarBrightness: Brightness.light,
       // android
@@ -161,7 +160,9 @@ final ThemeData lightTheme = appTheme.copyWith(
 
       systemNavigationBarIconBrightness: Brightness.light,
     ),
-    iconTheme: const IconThemeData(color: Colors.red,),
+    iconTheme: const IconThemeData(
+      color: Colors.red,
+    ),
     centerTitle: true,
     shadowColor: Colors.black45,
     titleTextStyle: const TextStyle(
@@ -170,10 +171,9 @@ final ThemeData lightTheme = appTheme.copyWith(
       fontSize: 20,
       fontFamily: 'Bowlby One SC',
     ),
-
     toolbarTextStyle: ThemeTextStyles.light.appBarTitle,
-    backgroundColor:colorLightScheme.primary,
-    surfaceTintColor:colorLightScheme.primary,
+    backgroundColor: colorLightScheme.primary,
+    surfaceTintColor: colorLightScheme.primary,
   ),
   listTileTheme: const ListTileThemeData(
     iconColor: Color(0xFF242424),
@@ -196,52 +196,61 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w400,
       fontSize: 34,
+      fontFamily: 'Bowlby One SC',
     ),
 
     /// text field title style
     titleMedium: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w400,
       fontSize: 17,
+      fontFamily: 'Bowlby One SC',
     ),
     titleSmall: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w400,
       fontSize: 17,
+      fontFamily: 'Bowlby One SC',
     ),
 
     /// list tile title style
     bodyLarge: TextStyle(
       fontSize: 15,
       height: 20 / 15,
-      color: Color(0xFF242424),
+      color: Colors.white,
+      fontFamily: 'Bowlby One SC',
       fontWeight: FontWeight.w500,
     ),
 
     /// list tile subtitle style
     bodyMedium: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Bowlby One SC',
       fontSize: 17,
     ),
     bodySmall: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Bowlby One SC',
       fontSize: 15,
     ),
     displayLarge: TextStyle(
-      color: Colors.black,
+      fontFamily: 'Bowlby One SC',
+      color: Colors.white,
     ),
     displayMedium: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Bowlby One SC',
       fontSize: 17,
     ),
     displaySmall: TextStyle(
-      color: Colors.black,
+      fontFamily: 'Bowlby One SC',
+      color: Colors.white,
     ),
   ),
 );
@@ -299,11 +308,13 @@ final ThemeData darkTheme = appTheme.copyWith(
   textTheme: const TextTheme(
     bodySmall: TextStyle(
       color: Colors.white,
+      fontFamily: 'Bowlby One SC',
       fontWeight: FontWeight.w500,
       fontSize: 17,
     ),
     bodyMedium: TextStyle(
       color: Colors.white,
+      fontFamily: 'Bowlby One SC',
       fontWeight: FontWeight.w500,
       fontSize: 17,
     ),
