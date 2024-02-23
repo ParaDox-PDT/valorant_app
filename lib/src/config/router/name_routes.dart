@@ -13,4 +13,8 @@ sealed class Routes{
   static const String agents = '/agents';
   static const String agentDetail = '/agent_detail';
 
+  //weapons
+  static const String weapons = '/weapons';
+  static const String weaponDetail = '/weapon_detail';
+
 }

@@ -6,5 +6,6 @@ sealed class AppKeys{
   static const String themeMode = 'theme_mode';
   static const String langSelected = 'lang_selected';
   static const String agents = 'agents';
+  static const String weapons = 'weapons';
 
 }

@@ -1,20 +1,68 @@
 import 'dart:convert';
-WeaponsResponse weaponsResponseFromJson(String str) => WeaponsResponse.fromJson(json.decode(str));
-String weaponsResponseToJson(WeaponsResponse data) => json.encode(data.toJson());
+
+WeaponsResponse weaponsResponseFromJson(String str) =>
+    WeaponsResponse.fromJson(json.decode(str));
+
+String weaponsResponseToJson(WeaponsResponse data) =>
+    json.encode(data.toJson());
+
 class WeaponsResponse {
   WeaponsResponse({
-      this.uuid, 
-      this.displayName, 
-      this.category, 
-      this.defaultSkinUuid, 
-      this.displayIcon, 
-      this.killStreamIcon, 
-      this.assetPath, 
-      this.weaponStats, 
-      this.shopData, 
-      this.skins,});
+    this.status,
+    this.data,
+  });
 
-  WeaponsResponse.fromJson(dynamic json) {
+  WeaponsResponse.fromJson(Map<String,dynamic> json) {
+    status = json['status'];
+    if (json['data'] != null) {
+      data = [];
+      json['data'].forEach((v) {
+        data?.add(WeaponsData.fromJson(v));
+      });
+    }
+  }
+
+  int? status;
+  List<WeaponsData>? data;
+
+  WeaponsResponse copyWith({
+    int? status,
+    List<WeaponsData>? data,
+  }) =>
+      WeaponsResponse(
+        status: status ?? this.status,
+        data: data ?? this.data,
+      );
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['status'] = status;
+    if (data != null) {
+      map['data'] = data?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
+}
+
+WeaponsData dataFromJson(String str) => WeaponsData.fromJson(json.decode(str));
+
+String dataToJson(WeaponsData data) => json.encode(data.toJson());
+
+class WeaponsData {
+  WeaponsData({
+    this.uuid,
+    this.displayName,
+    this.category,
+    this.defaultSkinUuid,
+    this.displayIcon,
+    this.killStreamIcon,
+    this.assetPath,
+    this.weaponStats,
+    this.shopData,
+    this.skins,
+  });
+
+  WeaponsData.fromJson(Map<String,dynamic> json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     category = json['category'];
@@ -22,15 +70,19 @@ class WeaponsResponse {
     displayIcon = json['displayIcon'];
     killStreamIcon = json['killStreamIcon'];
     assetPath = json['assetPath'];
-    weaponStats = json['weaponStats'] != null ? WeaponStats.fromJson(json['weaponStats']) : null;
-    shopData = json['shopData'] != null ? ShopData.fromJson(json['shopData']) : null;
+    weaponStats = json['weaponStats'] != null
+        ? WeaponStats.fromJson(json['weaponStats'])
+        : null;
+    shopData =
+        json['shopData'] != null ? ShopData.fromJson(json['shopData']) : null;
     if (json['skins'] != null) {
       skins = [];
       json['skins'].forEach((v) {
-        skins?.add(Skins.fromJson(v));
+        skins?.add(WeaponsSkins.fromJson(v));
       });
     }
   }
+
   String? uuid;
   String? displayName;
   String? category;
@@ -40,28 +92,33 @@ class WeaponsResponse {
   String? assetPath;
   WeaponStats? weaponStats;
   ShopData? shopData;
-  List<Skins>? skins;
-WeaponsResponse copyWith({  String? uuid,
-  String? displayName,
-  String? category,
-  String? defaultSkinUuid,
-  String? displayIcon,
-  String? killStreamIcon,
-  String? assetPath,
-  WeaponStats? weaponStats,
-  ShopData? shopData,
-  List<Skins>? skins,
-}) => WeaponsResponse(  uuid: uuid ?? this.uuid,
-  displayName: displayName ?? this.displayName,
-  category: category ?? this.category,
-  defaultSkinUuid: defaultSkinUuid ?? this.defaultSkinUuid,
-  displayIcon: displayIcon ?? this.displayIcon,
-  killStreamIcon: killStreamIcon ?? this.killStreamIcon,
-  assetPath: assetPath ?? this.assetPath,
-  weaponStats: weaponStats ?? this.weaponStats,
-  shopData: shopData ?? this.shopData,
-  skins: skins ?? this.skins,
-);
+  List<WeaponsSkins>? skins;
+
+  WeaponsData copyWith({
+    String? uuid,
+    String? displayName,
+    String? category,
+    String? defaultSkinUuid,
+    String? displayIcon,
+    String? killStreamIcon,
+    String? assetPath,
+    WeaponStats? weaponStats,
+    ShopData? shopData,
+    List<WeaponsSkins>? skins,
+  }) =>
+      WeaponsData(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        category: category ?? this.category,
+        defaultSkinUuid: defaultSkinUuid ?? this.defaultSkinUuid,
+        displayIcon: displayIcon ?? this.displayIcon,
+        killStreamIcon: killStreamIcon ?? this.killStreamIcon,
+        assetPath: assetPath ?? this.assetPath,
+        weaponStats: weaponStats ?? this.weaponStats,
+        shopData: shopData ?? this.shopData,
+        skins: skins ?? this.skins,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['uuid'] = uuid;
@@ -82,24 +139,27 @@ WeaponsResponse copyWith({  String? uuid,
     }
     return map;
   }
-
 }
 
-Skins skinsFromJson(String str) => Skins.fromJson(json.decode(str));
-String skinsToJson(Skins data) => json.encode(data.toJson());
-class Skins {
-  Skins({
-      this.uuid, 
-      this.displayName, 
-      this.themeUuid, 
-      this.contentTierUuid, 
-      this.displayIcon, 
-      this.wallpaper, 
-      this.assetPath, 
-      this.chromas, 
-      this.levels,});
+WeaponsSkins skinsFromJson(String str) =>
+    WeaponsSkins.fromJson(json.decode(str));
 
-  Skins.fromJson(dynamic json) {
+String skinsToJson(WeaponsSkins data) => json.encode(data.toJson());
+
+class WeaponsSkins {
+  WeaponsSkins({
+    this.uuid,
+    this.displayName,
+    this.themeUuid,
+    this.contentTierUuid,
+    this.displayIcon,
+    this.wallpaper,
+    this.assetPath,
+    this.chromas,
+    this.levels,
+  });
+
+  WeaponsSkins.fromJson(Map<String,dynamic> json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     themeUuid = json['themeUuid'];
@@ -110,16 +170,17 @@ class Skins {
     if (json['chromas'] != null) {
       chromas = [];
       json['chromas'].forEach((v) {
-        chromas?.add(Chromas.fromJson(v));
+        chromas?.add(WeaponsChromas.fromJson(v));
       });
     }
     if (json['levels'] != null) {
       levels = [];
       json['levels'].forEach((v) {
-        levels?.add(Levels.fromJson(v));
+        levels?.add(WeaponsLevels.fromJson(v));
       });
     }
   }
+
   String? uuid;
   String? displayName;
   String? themeUuid;
@@ -127,27 +188,32 @@ class Skins {
   String? displayIcon;
   dynamic wallpaper;
   String? assetPath;
-  List<Chromas>? chromas;
-  List<Levels>? levels;
-Skins copyWith({  String? uuid,
-  String? displayName,
-  String? themeUuid,
-  String? contentTierUuid,
-  String? displayIcon,
-  dynamic wallpaper,
-  String? assetPath,
-  List<Chromas>? chromas,
-  List<Levels>? levels,
-}) => Skins(  uuid: uuid ?? this.uuid,
-  displayName: displayName ?? this.displayName,
-  themeUuid: themeUuid ?? this.themeUuid,
-  contentTierUuid: contentTierUuid ?? this.contentTierUuid,
-  displayIcon: displayIcon ?? this.displayIcon,
-  wallpaper: wallpaper ?? this.wallpaper,
-  assetPath: assetPath ?? this.assetPath,
-  chromas: chromas ?? this.chromas,
-  levels: levels ?? this.levels,
-);
+  List<WeaponsChromas>? chromas;
+  List<WeaponsLevels>? levels;
+
+  WeaponsSkins copyWith({
+    String? uuid,
+    String? displayName,
+    String? themeUuid,
+    String? contentTierUuid,
+    String? displayIcon,
+    String? wallpaper,
+    String? assetPath,
+    List<WeaponsChromas>? chromas,
+    List<WeaponsLevels>? levels,
+  }) =>
+      WeaponsSkins(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        themeUuid: themeUuid ?? this.themeUuid,
+        contentTierUuid: contentTierUuid ?? this.contentTierUuid,
+        displayIcon: displayIcon ?? this.displayIcon,
+        wallpaper: wallpaper ?? this.wallpaper,
+        assetPath: assetPath ?? this.assetPath,
+        chromas: chromas ?? this.chromas,
+        levels: levels ?? this.levels,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['uuid'] = uuid;
@@ -165,21 +231,24 @@ Skins copyWith({  String? uuid,
     }
     return map;
   }
-
 }
 
-Levels levelsFromJson(String str) => Levels.fromJson(json.decode(str));
-String levelsToJson(Levels data) => json.encode(data.toJson());
-class Levels {
-  Levels({
-      this.uuid, 
-      this.displayName, 
-      this.levelItem, 
-      this.displayIcon, 
-      this.streamedVideo, 
-      this.assetPath,});
+WeaponsLevels levelsFromJson(String str) =>
+    WeaponsLevels.fromJson(json.decode(str));
 
-  Levels.fromJson(dynamic json) {
+String levelsToJson(WeaponsLevels data) => json.encode(data.toJson());
+
+class WeaponsLevels {
+  WeaponsLevels({
+    this.uuid,
+    this.displayName,
+    this.levelItem,
+    this.displayIcon,
+    this.streamedVideo,
+    this.assetPath,
+  });
+
+  WeaponsLevels.fromJson(Map<String,dynamic> json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     levelItem = json['levelItem'];
@@ -187,25 +256,31 @@ class Levels {
     streamedVideo = json['streamedVideo'];
     assetPath = json['assetPath'];
   }
+
   String? uuid;
   String? displayName;
   dynamic levelItem;
   String? displayIcon;
   dynamic streamedVideo;
   String? assetPath;
-Levels copyWith({  String? uuid,
-  String? displayName,
-  dynamic levelItem,
-  String? displayIcon,
-  dynamic streamedVideo,
-  String? assetPath,
-}) => Levels(  uuid: uuid ?? this.uuid,
-  displayName: displayName ?? this.displayName,
-  levelItem: levelItem ?? this.levelItem,
-  displayIcon: displayIcon ?? this.displayIcon,
-  streamedVideo: streamedVideo ?? this.streamedVideo,
-  assetPath: assetPath ?? this.assetPath,
-);
+
+  WeaponsLevels copyWith({
+    String? uuid,
+    String? displayName,
+    dynamic levelItem,
+    String? displayIcon,
+    dynamic streamedVideo,
+    String? assetPath,
+  }) =>
+      WeaponsLevels(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        levelItem: levelItem ?? this.levelItem,
+        displayIcon: displayIcon ?? this.displayIcon,
+        streamedVideo: streamedVideo ?? this.streamedVideo,
+        assetPath: assetPath ?? this.assetPath,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['uuid'] = uuid;
@@ -216,22 +291,25 @@ Levels copyWith({  String? uuid,
     map['assetPath'] = assetPath;
     return map;
   }
-
 }
 
-Chromas chromasFromJson(String str) => Chromas.fromJson(json.decode(str));
-String chromasToJson(Chromas data) => json.encode(data.toJson());
-class Chromas {
-  Chromas({
-      this.uuid, 
-      this.displayName, 
-      this.displayIcon, 
-      this.fullRender, 
-      this.swatch, 
-      this.streamedVideo, 
-      this.assetPath,});
+WeaponsChromas chromasFromJson(String str) =>
+    WeaponsChromas.fromJson(json.decode(str));
 
-  Chromas.fromJson(dynamic json) {
+String chromasToJson(WeaponsChromas data) => json.encode(data.toJson());
+
+class WeaponsChromas {
+  WeaponsChromas({
+    this.uuid,
+    this.displayName,
+    this.displayIcon,
+    this.fullRender,
+    this.swatch,
+    this.streamedVideo,
+    this.assetPath,
+  });
+
+  WeaponsChromas.fromJson(Map<String,dynamic> json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     displayIcon = json['displayIcon'];
@@ -240,6 +318,7 @@ class Chromas {
     streamedVideo = json['streamedVideo'];
     assetPath = json['assetPath'];
   }
+
   String? uuid;
   String? displayName;
   dynamic displayIcon;
@@ -247,21 +326,26 @@ class Chromas {
   dynamic swatch;
   dynamic streamedVideo;
   String? assetPath;
-Chromas copyWith({  String? uuid,
-  String? displayName,
-  dynamic displayIcon,
-  String? fullRender,
-  dynamic swatch,
-  dynamic streamedVideo,
-  String? assetPath,
-}) => Chromas(  uuid: uuid ?? this.uuid,
-  displayName: displayName ?? this.displayName,
-  displayIcon: displayIcon ?? this.displayIcon,
-  fullRender: fullRender ?? this.fullRender,
-  swatch: swatch ?? this.swatch,
-  streamedVideo: streamedVideo ?? this.streamedVideo,
-  assetPath: assetPath ?? this.assetPath,
-);
+
+  WeaponsChromas copyWith({
+    String? uuid,
+    String? displayName,
+    String? displayIcon,
+    String? fullRender,
+    dynamic swatch,
+    dynamic streamedVideo,
+    String? assetPath,
+  }) =>
+      WeaponsChromas(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        displayIcon: displayIcon ?? this.displayIcon,
+        fullRender: fullRender ?? this.fullRender,
+        swatch: swatch ?? this.swatch,
+        streamedVideo: streamedVideo ?? this.streamedVideo,
+        assetPath: assetPath ?? this.assetPath,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['uuid'] = uuid;
@@ -273,36 +357,41 @@ Chromas copyWith({  String? uuid,
     map['assetPath'] = assetPath;
     return map;
   }
-
 }
 
 ShopData shopDataFromJson(String str) => ShopData.fromJson(json.decode(str));
+
 String shopDataToJson(ShopData data) => json.encode(data.toJson());
+
 class ShopData {
   ShopData({
-      this.cost, 
-      this.category, 
-      this.shopOrderPriority, 
-      this.categoryText, 
-      this.gridPosition, 
-      this.canBeTrashed, 
-      this.image, 
-      this.newImage, 
-      this.newImage2, 
-      this.assetPath,});
+    this.cost,
+    this.category,
+    this.shopOrderPriority,
+    this.categoryText,
+    this.gridPosition,
+    this.canBeTrashed,
+    this.image,
+    this.newImage,
+    this.newImage2,
+    this.assetPath,
+  });
 
-  ShopData.fromJson(dynamic json) {
+  ShopData.fromJson(Map<String,dynamic> json) {
     cost = json['cost'];
     category = json['category'];
     shopOrderPriority = json['shopOrderPriority'];
     categoryText = json['categoryText'];
-    gridPosition = json['gridPosition'] != null ? GridPosition.fromJson(json['gridPosition']) : null;
+    gridPosition = json['gridPosition'] != null
+        ? GridPosition.fromJson(json['gridPosition'])
+        : null;
     canBeTrashed = json['canBeTrashed'];
     image = json['image'];
     newImage = json['newImage'];
     newImage2 = json['newImage2'];
     assetPath = json['assetPath'];
   }
+
   int? cost;
   String? category;
   int? shopOrderPriority;
@@ -313,27 +402,32 @@ class ShopData {
   String? newImage;
   dynamic newImage2;
   String? assetPath;
-ShopData copyWith({  int? cost,
-  String? category,
-  int? shopOrderPriority,
-  String? categoryText,
-  GridPosition? gridPosition,
-  bool? canBeTrashed,
-  dynamic image,
-  String? newImage,
-  dynamic newImage2,
-  String? assetPath,
-}) => ShopData(  cost: cost ?? this.cost,
-  category: category ?? this.category,
-  shopOrderPriority: shopOrderPriority ?? this.shopOrderPriority,
-  categoryText: categoryText ?? this.categoryText,
-  gridPosition: gridPosition ?? this.gridPosition,
-  canBeTrashed: canBeTrashed ?? this.canBeTrashed,
-  image: image ?? this.image,
-  newImage: newImage ?? this.newImage,
-  newImage2: newImage2 ?? this.newImage2,
-  assetPath: assetPath ?? this.assetPath,
-);
+
+  ShopData copyWith({
+    int? cost,
+    String? category,
+    int? shopOrderPriority,
+    String? categoryText,
+    GridPosition? gridPosition,
+    bool? canBeTrashed,
+    String? image,
+    String? newImage,
+    String? newImage2,
+    String? assetPath,
+  }) =>
+      ShopData(
+        cost: cost ?? this.cost,
+        category: category ?? this.category,
+        shopOrderPriority: shopOrderPriority ?? this.shopOrderPriority,
+        categoryText: categoryText ?? this.categoryText,
+        gridPosition: gridPosition ?? this.gridPosition,
+        canBeTrashed: canBeTrashed ?? this.canBeTrashed,
+        image: image ?? this.image,
+        newImage: newImage ?? this.newImage,
+        newImage2: newImage2 ?? this.newImage2,
+        assetPath: assetPath ?? this.assetPath,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['cost'] = cost;
@@ -350,57 +444,69 @@ ShopData copyWith({  int? cost,
     map['assetPath'] = assetPath;
     return map;
   }
-
 }
 
-GridPosition gridPositionFromJson(String str) => GridPosition.fromJson(json.decode(str));
+GridPosition gridPositionFromJson(String str) =>
+    GridPosition.fromJson(json.decode(str));
+
 String gridPositionToJson(GridPosition data) => json.encode(data.toJson());
+
 class GridPosition {
   GridPosition({
-      this.row, 
-      this.column,});
+    this.row,
+    this.column,
+  });
 
-  GridPosition.fromJson(dynamic json) {
+  GridPosition.fromJson(Map<String,dynamic> json) {
     row = json['row'];
     column = json['column'];
   }
+
   int? row;
   int? column;
-GridPosition copyWith({  int? row,
-  int? column,
-}) => GridPosition(  row: row ?? this.row,
-  column: column ?? this.column,
-);
+
+  GridPosition copyWith({
+    int? row,
+    int? column,
+  }) =>
+      GridPosition(
+        row: row ?? this.row,
+        column: column ?? this.column,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['row'] = row;
     map['column'] = column;
     return map;
   }
-
 }
 
-WeaponStats weaponStatsFromJson(String str) => WeaponStats.fromJson(json.decode(str));
+WeaponStats weaponStatsFromJson(String str) =>
+    WeaponStats.fromJson(json.decode(str));
+
 String weaponStatsToJson(WeaponStats data) => json.encode(data.toJson());
+
 class WeaponStats {
   WeaponStats({
-      this.fireRate, 
-      this.magazineSize, 
-      this.runSpeedMultiplier, 
-      this.equipTimeSeconds, 
-      this.reloadTimeSeconds, 
-      this.firstBulletAccuracy, 
-      this.shotgunPelletCount, 
-      this.wallPenetration, 
-      this.feature, 
-      this.fireMode, 
-      this.altFireType, 
-      this.adsStats, 
-      this.altShotgunStats, 
-      this.airBurstStats, 
-      this.damageRanges,});
+    this.fireRate,
+    this.magazineSize,
+    this.runSpeedMultiplier,
+    this.equipTimeSeconds,
+    this.reloadTimeSeconds,
+    this.firstBulletAccuracy,
+    this.shotgunPelletCount,
+    this.wallPenetration,
+    this.feature,
+    this.fireMode,
+    this.altFireType,
+    this.adsStats,
+    this.altShotgunStats,
+    this.airBurstStats,
+    this.damageRanges,
+  });
 
-  WeaponStats.fromJson(dynamic json) {
+  WeaponStats.fromJson(Map<String,dynamic> json) {
     fireRate = json['fireRate'];
     magazineSize = json['magazineSize'];
     runSpeedMultiplier = json['runSpeedMultiplier'];
@@ -412,7 +518,8 @@ class WeaponStats {
     feature = json['feature'];
     fireMode = json['fireMode'];
     altFireType = json['altFireType'];
-    adsStats = json['adsStats'] != null ? AdsStats.fromJson(json['adsStats']) : null;
+    adsStats =
+        json['adsStats'] != null ? AdsStats.fromJson(json['adsStats']) : null;
     altShotgunStats = json['altShotgunStats'];
     airBurstStats = json['airBurstStats'];
     if (json['damageRanges'] != null) {
@@ -422,6 +529,7 @@ class WeaponStats {
       });
     }
   }
+
   int? fireRate;
   int? magazineSize;
   double? runSpeedMultiplier;
@@ -437,37 +545,42 @@ class WeaponStats {
   dynamic altShotgunStats;
   dynamic airBurstStats;
   List<DamageRanges>? damageRanges;
-WeaponStats copyWith({  int? fireRate,
-  int? magazineSize,
-  double? runSpeedMultiplier,
-  double? equipTimeSeconds,
-  int? reloadTimeSeconds,
-  double? firstBulletAccuracy,
-  int? shotgunPelletCount,
-  String? wallPenetration,
-  String? feature,
-  dynamic fireMode,
-  String? altFireType,
-  AdsStats? adsStats,
-  dynamic altShotgunStats,
-  dynamic airBurstStats,
-  List<DamageRanges>? damageRanges,
-}) => WeaponStats(  fireRate: fireRate ?? this.fireRate,
-  magazineSize: magazineSize ?? this.magazineSize,
-  runSpeedMultiplier: runSpeedMultiplier ?? this.runSpeedMultiplier,
-  equipTimeSeconds: equipTimeSeconds ?? this.equipTimeSeconds,
-  reloadTimeSeconds: reloadTimeSeconds ?? this.reloadTimeSeconds,
-  firstBulletAccuracy: firstBulletAccuracy ?? this.firstBulletAccuracy,
-  shotgunPelletCount: shotgunPelletCount ?? this.shotgunPelletCount,
-  wallPenetration: wallPenetration ?? this.wallPenetration,
-  feature: feature ?? this.feature,
-  fireMode: fireMode ?? this.fireMode,
-  altFireType: altFireType ?? this.altFireType,
-  adsStats: adsStats ?? this.adsStats,
-  altShotgunStats: altShotgunStats ?? this.altShotgunStats,
-  airBurstStats: airBurstStats ?? this.airBurstStats,
-  damageRanges: damageRanges ?? this.damageRanges,
-);
+
+  WeaponStats copyWith({
+    int? fireRate,
+    int? magazineSize,
+    double? runSpeedMultiplier,
+    double? equipTimeSeconds,
+    int? reloadTimeSeconds,
+    double? firstBulletAccuracy,
+    int? shotgunPelletCount,
+    String? wallPenetration,
+    String? feature,
+    dynamic fireMode,
+    String? altFireType,
+    AdsStats? adsStats,
+    dynamic altShotgunStats,
+    dynamic airBurstStats,
+    List<DamageRanges>? damageRanges,
+  }) =>
+      WeaponStats(
+        fireRate: fireRate ?? this.fireRate,
+        magazineSize: magazineSize ?? this.magazineSize,
+        runSpeedMultiplier: runSpeedMultiplier ?? this.runSpeedMultiplier,
+        equipTimeSeconds: equipTimeSeconds ?? this.equipTimeSeconds,
+        reloadTimeSeconds: reloadTimeSeconds ?? this.reloadTimeSeconds,
+        firstBulletAccuracy: firstBulletAccuracy ?? this.firstBulletAccuracy,
+        shotgunPelletCount: shotgunPelletCount ?? this.shotgunPelletCount,
+        wallPenetration: wallPenetration ?? this.wallPenetration,
+        feature: feature ?? this.feature,
+        fireMode: fireMode ?? this.fireMode,
+        altFireType: altFireType ?? this.altFireType,
+        adsStats: adsStats ?? this.adsStats,
+        altShotgunStats: altShotgunStats ?? this.altShotgunStats,
+        airBurstStats: airBurstStats ?? this.airBurstStats,
+        damageRanges: damageRanges ?? this.damageRanges,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['fireRate'] = fireRate;
@@ -491,42 +604,51 @@ WeaponStats copyWith({  int? fireRate,
     }
     return map;
   }
-
 }
 
-DamageRanges damageRangesFromJson(String str) => DamageRanges.fromJson(json.decode(str));
+DamageRanges damageRangesFromJson(String str) =>
+    DamageRanges.fromJson(json.decode(str));
+
 String damageRangesToJson(DamageRanges data) => json.encode(data.toJson());
+
 class DamageRanges {
   DamageRanges({
-      this.rangeStartMeters, 
-      this.rangeEndMeters, 
-      this.headDamage, 
-      this.bodyDamage, 
-      this.legDamage,});
+    this.rangeStartMeters,
+    this.rangeEndMeters,
+    this.headDamage,
+    this.bodyDamage,
+    this.legDamage,
+  });
 
-  DamageRanges.fromJson(dynamic json) {
+  DamageRanges.fromJson(Map<String,dynamic> json) {
     rangeStartMeters = json['rangeStartMeters'];
     rangeEndMeters = json['rangeEndMeters'];
     headDamage = json['headDamage'];
     bodyDamage = json['bodyDamage'];
     legDamage = json['legDamage'];
   }
+
   int? rangeStartMeters;
   int? rangeEndMeters;
   double? headDamage;
   int? bodyDamage;
   double? legDamage;
-DamageRanges copyWith({  int? rangeStartMeters,
-  int? rangeEndMeters,
-  double? headDamage,
-  int? bodyDamage,
-  double? legDamage,
-}) => DamageRanges(  rangeStartMeters: rangeStartMeters ?? this.rangeStartMeters,
-  rangeEndMeters: rangeEndMeters ?? this.rangeEndMeters,
-  headDamage: headDamage ?? this.headDamage,
-  bodyDamage: bodyDamage ?? this.bodyDamage,
-  legDamage: legDamage ?? this.legDamage,
-);
+
+  DamageRanges copyWith({
+    int? rangeStartMeters,
+    int? rangeEndMeters,
+    double? headDamage,
+    int? bodyDamage,
+    double? legDamage,
+  }) =>
+      DamageRanges(
+        rangeStartMeters: rangeStartMeters ?? this.rangeStartMeters,
+        rangeEndMeters: rangeEndMeters ?? this.rangeEndMeters,
+        headDamage: headDamage ?? this.headDamage,
+        bodyDamage: bodyDamage ?? this.bodyDamage,
+        legDamage: legDamage ?? this.legDamage,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['rangeStartMeters'] = rangeStartMeters;
@@ -536,42 +658,50 @@ DamageRanges copyWith({  int? rangeStartMeters,
     map['legDamage'] = legDamage;
     return map;
   }
-
 }
 
 AdsStats adsStatsFromJson(String str) => AdsStats.fromJson(json.decode(str));
+
 String adsStatsToJson(AdsStats data) => json.encode(data.toJson());
+
 class AdsStats {
   AdsStats({
-      this.zoomMultiplier, 
-      this.fireRate, 
-      this.runSpeedMultiplier, 
-      this.burstCount, 
-      this.firstBulletAccuracy,});
+    this.zoomMultiplier,
+    this.fireRate,
+    this.runSpeedMultiplier,
+    this.burstCount,
+    this.firstBulletAccuracy,
+  });
 
-  AdsStats.fromJson(dynamic json) {
+  AdsStats.fromJson(Map<String,dynamic> json) {
     zoomMultiplier = json['zoomMultiplier'];
     fireRate = json['fireRate'];
     runSpeedMultiplier = json['runSpeedMultiplier'];
     burstCount = json['burstCount'];
     firstBulletAccuracy = json['firstBulletAccuracy'];
   }
+
   double? zoomMultiplier;
   double? fireRate;
   double? runSpeedMultiplier;
   int? burstCount;
   double? firstBulletAccuracy;
-AdsStats copyWith({  double? zoomMultiplier,
-  double? fireRate,
-  double? runSpeedMultiplier,
-  int? burstCount,
-  double? firstBulletAccuracy,
-}) => AdsStats(  zoomMultiplier: zoomMultiplier ?? this.zoomMultiplier,
-  fireRate: fireRate ?? this.fireRate,
-  runSpeedMultiplier: runSpeedMultiplier ?? this.runSpeedMultiplier,
-  burstCount: burstCount ?? this.burstCount,
-  firstBulletAccuracy: firstBulletAccuracy ?? this.firstBulletAccuracy,
-);
+
+  AdsStats copyWith({
+    double? zoomMultiplier,
+    double? fireRate,
+    double? runSpeedMultiplier,
+    int? burstCount,
+    double? firstBulletAccuracy,
+  }) =>
+      AdsStats(
+        zoomMultiplier: zoomMultiplier ?? this.zoomMultiplier,
+        fireRate: fireRate ?? this.fireRate,
+        runSpeedMultiplier: runSpeedMultiplier ?? this.runSpeedMultiplier,
+        burstCount: burstCount ?? this.burstCount,
+        firstBulletAccuracy: firstBulletAccuracy ?? this.firstBulletAccuracy,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['zoomMultiplier'] = zoomMultiplier;
@@ -581,5 +711,4 @@ AdsStats copyWith({  double? zoomMultiplier,
     map['firstBulletAccuracy'] = firstBulletAccuracy;
     return map;
   }
-
 }

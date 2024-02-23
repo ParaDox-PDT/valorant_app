@@ -30,7 +30,9 @@ mixin MainPageMixin on State<MainPage> {
       () {
         context.push(Routes.agents);
       },
-      () {},
+      () {
+      context.push(Routes.weapons);
+      },
       () {},
       () {},
       () {},

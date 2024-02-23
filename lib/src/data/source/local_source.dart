@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agents_response.dart';
+import 'package:valorant_app/src/data/models/weapons/weapons_response.dart';
 
 final class LocalSource {
   const LocalSource(this.box);
@@ -34,6 +35,14 @@ final class LocalSource {
   Agents? getAgents() => box.get(
       AppKeys.agents,
     );
+
+  Future<void> setWeapons(WeaponsResponse weapons)async{
+    await box.put(AppKeys.weapons, weapons);
+  }
+
+  WeaponsResponse? getWeapons() => box.get(
+    AppKeys.weapons,
+  );
 
   Future<void> setKey(String key, String value) async {
     await box.put(key, value);

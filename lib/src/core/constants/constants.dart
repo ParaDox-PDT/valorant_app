@@ -13,6 +13,9 @@ sealed class Constants{
   static const agentsUrl = '/agents';
   static const agentsByIdUrl = '/agents/';
 
+  ///weapons
+  static const weaponsUrl = '/weapons';
+
 
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }
