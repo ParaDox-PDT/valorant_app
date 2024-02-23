@@ -97,7 +97,7 @@ void mainFeature() {
 void agentsFeature() {
   sl
     ..registerFactory<AgentsBloc>(
-      () => AgentsBloc(sl()),
+      () => AgentsBloc(sl(),sl()),
     )
     ..registerLazySingleton<AgentsRepository>(
       () => AgentsRepositoryImpl(dio: sl()),
