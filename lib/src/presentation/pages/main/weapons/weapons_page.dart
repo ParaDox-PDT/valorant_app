@@ -9,9 +9,24 @@ class WeaponsPage extends StatefulWidget {
 
 class _WeaponsPageState extends State<WeaponsPage> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('WEAPONS PAGE'),
+  Widget build(BuildContext context) => BlocBuilder<WeaponsBloc, WeaponsState>(
+        buildWhen: (p, c) => p != c,
+        builder: (_, state) => Scaffold(
+          backgroundColor: context.colorScheme.primary,
+          appBar: AppBar(
+            title: const Text('Weapons Page'),
+          ),
+          body: Column(
+            children: [
+              ...List.generate(
+                state.weaponsData.length ?? 0,
+                (index) => Text(
+                  state.weaponsData[index].displayName ?? 'null',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }

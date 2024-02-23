@@ -87,6 +87,7 @@ Future<void> init() async {
   mainFeature();
   agentsFeature();
   agentDetailFeature();
+  weaponsFeature();
 }
 
 void mainFeature() {

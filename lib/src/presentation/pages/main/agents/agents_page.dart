@@ -32,10 +32,12 @@ class _AgentsPageState extends State<AgentsPage> {
                               final AgentsData agent = state.agents[index];
                               if (index.isEven) {
                                 return SlideInLeft(
-                                    child: AgentsItem(agent: agent));
+                                  child: AgentsItem(agent: agent),
+                                );
                               } else {
                                 return SlideInRight(
-                                    child: AgentsItem(agent: agent));
+                                  child: AgentsItem(agent: agent),
+                                );
                               }
                             },
                           ),
