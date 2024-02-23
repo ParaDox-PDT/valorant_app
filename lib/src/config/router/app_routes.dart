@@ -75,7 +75,7 @@ final GoRouter router = GoRouter(
       name: Routes.agentDetail,
       builder: (_, __) => BlocProvider(
         create: (_) => sl<AgentDetailBloc>(),
-        child:  AgentDetailPage(uuid: __.extra! as String),
+        child: AgentDetailPage(uuid: __.extra! as String),
       ),
     ),
 

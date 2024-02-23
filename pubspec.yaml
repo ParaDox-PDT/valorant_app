@@ -60,6 +60,10 @@ dependencies:
   animate_do: ^3.3.3
   #shimmer
   shimmer: ^3.0.0
+  #toast
+  fluttertoast: ^8.2.4
+  #lottie
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:

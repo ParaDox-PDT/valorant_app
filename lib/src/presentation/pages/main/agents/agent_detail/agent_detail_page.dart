@@ -22,7 +22,10 @@ class _AgentDetailPageState extends State<AgentDetailPage>
           extendBodyBehindAppBar: true,
           body: state.agentDetailStatus == BlocStatus.loading
               ? Center(
-                  child: StaggeredDotsWave(size: 50,color: context.colorScheme.secondary,)
+                  child: StaggeredDotsWave(
+                    size: 50,
+                    color: context.colorScheme.secondary,
+                  ),
                 )
               : CustomScrollView(
                   slivers: [
@@ -31,12 +34,11 @@ class _AgentDetailPageState extends State<AgentDetailPage>
                             state.agentDetail?.backgroundGradientColors?[1] ??
                                 'FF4655FF',
                         image: state.agentDetail?.fullPortrait ?? 'null'),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                    SliverPadding(
+                      padding: const EdgeInsets.all(32),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
                             ...agentDetailInfo(
                                 agentDetail:
                                     state.agentDetail ?? AgentDetailData()),

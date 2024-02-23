@@ -38,41 +38,41 @@ class _InternetConnectionPageState extends State<InternetConnectionPage> {
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(36),
-                child: Image.network(
-                  'https://static.vecteezy.com/system/resources/previews/002/737/785/original/no-internet-connection-illustration-concept-free-vector.jpg',
-                  fit: BoxFit.fitWidth,
-                ),
+          backgroundColor: context.colorScheme.primary,
+          body: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset(AppImages.noInternet2),
+                  36.g,
+                  const Text(
+                    'Oops!',
+                    style: TextStyle(
+                      fontFamily: 'Bowlby One SC',
+                      fontSize: 40,
+                    ),
+                  ),
+                  14.g,
+                  const Text(
+                    'There is no internet connection. \nPlease check your internet connection ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFCFCFCF),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
-              const Text(
-                'Нет доступа к интернету',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                'Проверьте подключение к интернету',
-                style: TextStyle(
-                  color: Color(0xff818C99),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
+            ),
           ),
-          bottomNavigationBar: SafeArea(
-            minimum: const EdgeInsets.all(16),
-            child: ElevatedButton(
-              child: const Text('Попробовать снова'),
-              onPressed: () async {
+          bottomNavigationBar: Padding(
+            padding: AppUtils.kPaddingAll24,
+            child: ZoomTapAnimation(
+              onTap: () async {
                 setState(() {
                   isLoading = true;
                 });
@@ -86,6 +86,22 @@ class _InternetConnectionPageState extends State<InternetConnectionPage> {
                   Navigator.of(context).pop();
                 }
               },
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: context.colorScheme.secondary,
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Text(
+                      'Try again',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14, color: Color(0xFFFAFAFA)),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
