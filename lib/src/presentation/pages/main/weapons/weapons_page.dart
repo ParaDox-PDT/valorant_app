@@ -13,17 +13,10 @@ class _WeaponsPageState extends State<WeaponsPage> {
         buildWhen: (p, c) => p != c,
         builder: (_, state) => Scaffold(
           backgroundColor: context.colorScheme.primary,
-          appBar: AppBar(
-            title: const Text('Weapons Page'),
-          ),
-          body: Column(
-            children: [
-              ...List.generate(
-                state.weaponsData.length ?? 0,
-                (index) => Text(
-                  state.weaponsData[index].displayName ?? 'null',
-                  style: const TextStyle(color: Colors.white),
-                ),
+          body: CustomScrollView(
+            slivers: [
+              CustomSliverAppBar(
+                title: 'weapons'.tr,
               ),
             ],
           ),

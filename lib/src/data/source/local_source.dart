@@ -33,16 +33,16 @@ final class LocalSource {
   }
 
   Agents? getAgents() => box.get(
-      AppKeys.agents,
-    );
+        AppKeys.agents,
+      );
 
-  Future<void> setWeapons(WeaponsResponse weapons)async{
+  Future<void> setWeapons(WeaponsResponse weapons) async {
     await box.put(AppKeys.weapons, weapons);
   }
 
   WeaponsResponse? getWeapons() => box.get(
-    AppKeys.weapons,
-  );
+        AppKeys.weapons,
+      );
 
   Future<void> setKey(String key, String value) async {
     await box.put(key, value);
@@ -70,4 +70,14 @@ HiveInterface hiveRegister() => Hive
   ..registerAdapter(AgentsAdapter())
   ..registerAdapter(AgentsDataAdapter())
   ..registerAdapter(AgentsRoleAdapter())
-  ..registerAdapter(AgentsAbilitiesAdapter());
+  ..registerAdapter(AgentsAbilitiesAdapter())
+  ..registerAdapter(WeaponsAdsStatsAdapter())
+  ..registerAdapter(WeaponsChromasAdapter())
+  ..registerAdapter(WeaponsDamageRangesAdapter())
+  ..registerAdapter(WeaponsDataAdapter())
+  ..registerAdapter(WeaponsGridPositionAdapter())
+  ..registerAdapter(WeaponsLevelsAdapter())
+  ..registerAdapter(WeaponsResponseAdapter())
+  ..registerAdapter(WeaponsShopDataAdapter())
+  ..registerAdapter(WeaponsSkinsAdapter())
+  ..registerAdapter(WeaponsStatsAdapter());
