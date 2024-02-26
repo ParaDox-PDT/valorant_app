@@ -3,7 +3,6 @@ part of '../weapons_page_part.dart';
 List<Widget> weaponsList({
   required List<WeaponsData> weaponsData,
   required BuildContext context,
-  required VoidCallback onTap,
 }) =>
     List.generate(
       weaponsData.length.isOdd ? weaponsData.length - 1 : weaponsData.length,
@@ -11,9 +10,18 @@ List<Widget> weaponsList({
         if (index.isEven) {
           return SlideInLeft(
             child: CustomWeaponListLeftItem(
-              onTap: onTap,
+              onTap: () {
+                context.push(
+                  Routes.weaponDetail,
+                  extra: {
+                    'uuid': weaponsData[index].uuid ?? 'null',
+                    'image': weaponsData[index].displayIcon ?? 'null'
+                  },
+                );
+              },
               color: context.colorScheme.secondary,
               child: WeaponsListInnerItem(
+                  uuid: weaponsData[index].uuid ?? 'null',
                   title: weaponsData[index].displayName ?? 'null',
                   image: weaponsData[index].displayIcon ?? 'null'),
             ),
@@ -21,9 +29,18 @@ List<Widget> weaponsList({
         } else {
           return SlideInRight(
             child: CustomWeaponListRightItem(
-              onTap: onTap,
+              onTap: () {
+                context.push(
+                  Routes.weaponDetail,
+                  extra: {
+                    'uuid': weaponsData[index].uuid ?? 'null',
+                    'image': weaponsData[index].displayIcon ?? 'null'
+                  },
+                );
+              },
               color: context.colorScheme.secondary,
               child: WeaponsListInnerItem(
+                  uuid: weaponsData[index].uuid ?? 'null',
                   title: weaponsData[index].displayName ?? 'null',
                   image: weaponsData[index].displayIcon ?? 'null'),
             ),

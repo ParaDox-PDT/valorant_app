@@ -11,7 +11,7 @@ class AgentDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SliverToBoxAdapter(
         child: SizedBox(
-          height: context.isMobile?430.h :600.h,
+          height: context.isMobile ? 450.h : 600.h,
           child: Stack(
             children: [
               CustomTriangle(
@@ -22,7 +22,6 @@ class AgentDetailAppBar extends StatelessWidget {
                 slivers: [
                   SliverAppBar(
                     pinned: true,
-                    toolbarHeight:context.isMobile?50.h : 250.h,
                     scrolledUnderElevation: 0,
                     backgroundColor: Colors.transparent,
                     systemOverlayStyle: const SystemUiOverlayStyle(
@@ -35,11 +34,12 @@ class AgentDetailAppBar extends StatelessWidget {
                     ),
                     title: Text('agent_detail'.tr),
                     bottom: PreferredSize(
-                      preferredSize: Size(double.infinity, context.isMobile?360.h :360.h),
+                      preferredSize: Size.fromHeight(360.h),
                       child: CachedNetworkImage(
                         imageUrl: image,
                         fadeInDuration: const Duration(milliseconds: 300),
                         fadeOutDuration: const Duration(milliseconds: 300),
+                        height: 360.h,
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => Center(
                           child: Icon(

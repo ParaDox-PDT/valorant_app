@@ -14,6 +14,7 @@ import 'package:valorant_app/src/domain/repositories/agents/agents_repository.da
 import 'package:valorant_app/src/domain/repositories/weapons/weapons_repository.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_app/src/presentation/components/cupertino_back/cupertino_back_gesture.dart';
 import 'package:valorant_app/src/presentation/pages/internet_connection/internet_connection_part.dart';
@@ -85,9 +86,14 @@ Future<void> init() async {
 
   /// main
   mainFeature();
+
+  /// agents
   agentsFeature();
   agentDetailFeature();
+
+  /// weapons
   weaponsFeature();
+  weaponDetailFeature();
 }
 
 void mainFeature() {
@@ -117,6 +123,11 @@ void weaponsFeature() {
     ..registerFactory<WeaponsBloc>(() => WeaponsBloc(sl(), sl()))
     ..registerLazySingleton<WeaponsRepository>(
         () => WeaponsRepositoryImpl(dio: sl()));
+}
+
+void weaponDetailFeature() {
+  sl.registerFactory<WeaponDetailBloc>(
+          () => WeaponDetailBloc(weaponsRepository: sl()));
 }
 
 Future<void> initHive() async {

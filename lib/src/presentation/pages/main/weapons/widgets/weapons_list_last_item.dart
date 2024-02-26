@@ -5,10 +5,11 @@ class WeaponsListLastItem extends StatelessWidget {
       {super.key,
       required this.title,
       required this.image,
-      required this.onTap});
+      required this.onTap, required this.uuid});
 
   final String title;
   final String image;
+  final String uuid;
   final VoidCallback onTap;
 
   @override
@@ -16,6 +17,7 @@ class WeaponsListLastItem extends StatelessWidget {
         padding: AppUtils.kPaddingT0L16R16B12,
         sliver: SliverToBoxAdapter(
           child: ZoomTapAnimation(
+            onTap: onTap,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 border: Border.all(color: context.colorScheme.secondary),
@@ -26,10 +28,13 @@ class WeaponsListLastItem extends StatelessWidget {
                   children: [
                     Text(title),
                     10.g,
-                    CachedNetworkImage(
-                      imageUrl: image,
-                      height: 80.h,
-                      fit: BoxFit.fitWidth,
+                    Hero(
+                      tag: '${AppKeys.weaponDetailImage}_$uuid',
+                      child: CachedNetworkImage(
+                        imageUrl: image,
+                        height: 80.h,
+                        fit: BoxFit.fitWidth,
+                      ),
                     )
                   ],
                 ),

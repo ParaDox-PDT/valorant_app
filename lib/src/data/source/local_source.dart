@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agents_response.dart';
+import 'package:valorant_app/src/data/models/weapons/weapons_detail_response.dart';
 import 'package:valorant_app/src/data/models/weapons/weapons_response.dart';
 
 final class LocalSource {
@@ -10,10 +11,40 @@ final class LocalSource {
 
   final Box<dynamic> box;
 
+
+  /// AGENTS----------------------------------------------
+  Future<void> setAgents(Agents agents) async {
+    await box.put(AppKeys.agents, agents);
+  }
+
+  Agents? getAgents() => box.get(
+        AppKeys.agents,
+      );
+
+  /// WEAPONS----------------------------------------------
+  Future<void> setWeapons(WeaponsResponse weapons) async {
+    await box.put(AppKeys.weapons, weapons);
+  }
+
+  WeaponsResponse? getWeapons() => box.get(
+        AppKeys.weapons,
+      );
+
+  Future<void> setWeaponDetail(WeaponsData? weaponsData) async {
+    await box.put('${AppKeys.weaponDetail}_${weaponsData?.uuid}', weaponsData);
+  }
+
+  WeaponsData? getWeaponDetail(String uuid) => box.get(
+        '${AppKeys.weaponDetail}_$uuid',
+      );
+
+
+  /// OTHER ----------------------------------------------
+
   String get locale => box.get(
-        AppKeys.languageCode,
-        defaultValue: defaultLocale,
-      ) as String;
+    AppKeys.languageCode,
+    defaultValue: defaultLocale,
+  ) as String;
 
   bool get lanSelected =>
       box.get(AppKeys.langSelected, defaultValue: false) is bool
@@ -27,22 +58,6 @@ final class LocalSource {
   Future<void> setLocale(String lang) async {
     await box.put(AppKeys.languageCode, lang);
   }
-
-  Future<void> setAgents(Agents agents) async {
-    await box.put(AppKeys.agents, agents);
-  }
-
-  Agents? getAgents() => box.get(
-        AppKeys.agents,
-      );
-
-  Future<void> setWeapons(WeaponsResponse weapons) async {
-    await box.put(AppKeys.weapons, weapons);
-  }
-
-  WeaponsResponse? getWeapons() => box.get(
-        AppKeys.weapons,
-      );
 
   Future<void> setKey(String key, String value) async {
     await box.put(key, value);
@@ -66,6 +81,8 @@ final class LocalSource {
   }
 }
 
+/// HIVE REGISTER ADAPTERS
+
 HiveInterface hiveRegister() => Hive
   ..registerAdapter(AgentsAdapter())
   ..registerAdapter(AgentsDataAdapter())
@@ -80,4 +97,5 @@ HiveInterface hiveRegister() => Hive
   ..registerAdapter(WeaponsResponseAdapter())
   ..registerAdapter(WeaponsShopDataAdapter())
   ..registerAdapter(WeaponsSkinsAdapter())
-  ..registerAdapter(WeaponsStatsAdapter());
+  ..registerAdapter(WeaponsStatsAdapter())
+  ..registerAdapter(WeaponsDetailResponseAdapter());

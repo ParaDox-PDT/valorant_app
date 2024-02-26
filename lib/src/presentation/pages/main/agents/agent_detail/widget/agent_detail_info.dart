@@ -2,7 +2,7 @@ part of '../agent_detail_page_part.dart';
 
 List<Widget> agentDetailInfo({required AgentDetailData agentDetail}) => [
       SlideInLeft(
-        child: AgentDetailInfoItem(
+        child: DetailPagesInfoItem(
           title: 'agent_name'.tr,
           text: agentDetail.displayName ?? 'null',
           isRole: true,
@@ -10,13 +10,13 @@ List<Widget> agentDetailInfo({required AgentDetailData agentDetail}) => [
         ),
       ),
       SlideInRight(
-        child: AgentDetailInfoItem(
+        child: DetailPagesInfoItem(
           title: 'description'.tr,
           text: agentDetail.description ?? 'null',
         ),
       ),
       SlideInLeft(
-        child: AgentDetailInfoItem(
+        child: DetailPagesInfoItem(
           title: 'role'.tr,
           text: agentDetail.role?.displayName ?? 'null',
           isRole: true,
@@ -24,7 +24,7 @@ List<Widget> agentDetailInfo({required AgentDetailData agentDetail}) => [
         ),
       ),
       SlideInRight(
-        child: AgentDetailInfoItem(
+        child: DetailPagesInfoItem(
           title: '${'role'.tr} ${'description'.tr}',
           text: agentDetail.role?.description ?? 'null',
         ),

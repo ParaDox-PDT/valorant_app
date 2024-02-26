@@ -7,12 +7,14 @@ import 'package:valorant_app/src/injector_container.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/main_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:valorant_app/src/presentation/pages/internet_connection/internet_connection_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/agents/agent_detail/agent_detail_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/agents/agents_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/main_page_part.dart';
+import 'package:valorant_app/src/presentation/pages/main/weapons/weapon_detail/weapon_detail_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/weapons/weapons_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/splash/splash_page_part.dart';
 
@@ -91,6 +93,18 @@ final GoRouter router = GoRouter(
             const WeaponsGetAllEvent(),
           ),
         child: const WeaponsPage(),
+      ),
+    ),
+
+    /// weapon detail
+    GoRoute(
+      path: Routes.weaponDetail,
+      name: Routes.weaponDetail,
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<WeaponDetailBloc>(),
+        child: WeaponDetailPage(
+            uuid: (__.extra! as Map<String, String>)['uuid']!,
+            image: (__.extra! as Map<String, String>)['image']!),
       ),
     ),
 

@@ -28,7 +28,7 @@ class _WeaponsPageState extends State<WeaponsPage> {
                         : weaponsList(
                             weaponsData: state.weaponsData,
                             context: context,
-                            onTap: () {}),
+                          ),
                   ),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -41,9 +41,18 @@ class _WeaponsPageState extends State<WeaponsPage> {
               ),
               if (state.weaponsData.length.isOdd)
                 WeaponsListLastItem(
+                  uuid: state.weaponsData.last.uuid ?? 'null',
                   title: state.weaponsData.last.displayName ?? 'null',
                   image: state.weaponsData.last.displayIcon ?? 'null',
-                  onTap: () {},
+                  onTap: () {
+                    context.push(
+                      Routes.weaponDetail,
+                      extra: {
+                        'uuid': state.weaponsData.last.uuid ?? 'null',
+                        'image': state.weaponsData.last.displayIcon ?? 'null'
+                      },
+                    );
+                  },
                 )
             ],
           ),

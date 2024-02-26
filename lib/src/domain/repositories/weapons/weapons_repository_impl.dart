@@ -25,4 +25,24 @@ final class WeaponsRepositoryImpl extends WeaponsRepository {
       return Left(ServerError.withError(message: error.toString()).failure);
     }
   }
+
+  @override
+  Future<Either<Failure, WeaponsDetailResponse>> getWeaponDetail(
+      {required String uuid}) async {
+    try {
+      final Response response = await dio.get(
+        '${Constants.weaponsUrl}/$uuid',
+        queryParameters: {'language': getApiLocale},
+      );
+      return Right(
+        WeaponsDetailResponse.fromJson(response.data),
+      );
+    } on DioException catch (error, stacktrace) {
+      log('Exception occurred: $error stackTrace: $stacktrace');
+      return Left(ServerError.withDioError(error: error).failure);
+    } on Exception catch (error, stacktrace) {
+      log('Exception occurred: $error stacktrace: $stacktrace');
+      return Left(ServerError.withError(message: error.toString()).failure);
+    }
+  }
 }
