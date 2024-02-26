@@ -1,19 +1,33 @@
 part of 'custom_paint_items.dart';
 
-class CustomWeaponListItem extends StatelessWidget {
-  const CustomWeaponListItem({super.key, required this.color});
+///WEAPONS LEFT ITEM
+class CustomWeaponListLeftItem extends StatelessWidget {
+  const CustomWeaponListLeftItem(
+      {super.key, required this.color, required this.child});
 
   final Color color;
+  final Widget child;
 
   @override
-  Widget build(BuildContext context) => CustomPaint(
-    size: Size(double.infinity, 320.h),
-    painter: MyTriangle(color: color),
-  );
+  Widget build(BuildContext context) => ZoomTapAnimation(
+        child: CustomPaint(
+          size: Size(double.infinity, 150.h),
+          painter: WeaponListLeftItem(color: color),
+          foregroundPainter: WeaponListLeftItem(color: color),
+          child: SizedBox(
+            width: double.infinity,
+            height: 150.h,
+            child: Padding(
+              padding: EdgeInsets.only(left: 16.w, right: 20.w),
+              child: child,
+            ),
+          ),
+        ),
+      );
 }
 
-class MyTriangle extends CustomPainter {
-  MyTriangle({required this.color});
+class WeaponListLeftItem extends CustomPainter {
+  WeaponListLeftItem({required this.color});
 
   final Color color;
 
@@ -21,16 +35,172 @@ class MyTriangle extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final path = Path()
       ..moveTo(0, 0)
+      ..lineTo(0, size.height)
       ..lineTo(size.width, size.height)
+      ..lineTo(size.width - 15.w, size.height - 12.5.h)
+      ..lineTo(size.width, size.height - 25.h)
+      ..lineTo(size.width - 15.w, size.height - 37.5.h)
+      ..lineTo(size.width, size.height - 50.h)
+      ..lineTo(size.width - 15.w, size.height - 62.5.h)
+      ..lineTo(size.width, size.height - 75.h)
+      ..lineTo(size.width - 15.w, size.height - 87.5.h)
+      ..lineTo(size.width, size.height - 100.h)
+      ..lineTo(size.width - 15.w, size.height - 112.5.h)
+      ..lineTo(size.width, size.height - 125.h)
+      ..lineTo(size.width - 15.w, size.height - 137.5.h)
       ..lineTo(size.width, 0)
       ..close();
-    canvas.drawPath(path, Paint()..color = color);
-
-    // final Offset offset = Offset(size.width * 0.5, size.height);
-    // canvas.drawRect(
-    //     Rect.fromCenter(center: offset, width: 50, height: 50), paint);
+    canvas.drawPath(
+        path,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..color = color
+          ..strokeWidth = 1);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+///WEAPONS RIGHT ITEM
+class CustomWeaponListRightItem extends StatelessWidget {
+  const CustomWeaponListRightItem(
+      {super.key, required this.color, required this.child});
+
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => ZoomTapAnimation(
+        child: CustomPaint(
+          size: Size(double.infinity, 150.h),
+          painter: WeaponListRightItem(color: color),
+          child: SizedBox(
+            width: double.infinity,
+            height: 150.h,
+            child: Padding(
+              padding: EdgeInsets.only(left: 20.w, right: 16.w),
+              child: child,
+            ),
+          ),
+        ),
+      );
+}
+
+class WeaponListRightItem extends CustomPainter {
+  WeaponListRightItem({required this.color});
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final path2 = Path()
+      ..moveTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..lineTo(0 - 15.w, size.height - 12.5.h)
+      ..lineTo(0, size.height - 25.h)
+      ..lineTo(0 - 15.w, size.height - 37.5.h)
+      ..lineTo(0, size.height - 50.h)
+      ..lineTo(0 - 15.w, size.height - 62.5.h)
+      ..lineTo(0, size.height - 75.h)
+      ..lineTo(0 - 15.w, size.height - 87.5.h)
+      ..lineTo(0, size.height - 100.h)
+      ..lineTo(0 - 15.w, size.height - 112.5.h)
+      ..lineTo(0, size.height - 125.h)
+      ..lineTo(0 - 15.w, size.height - 137.5.h)
+      ..lineTo(0, 0)
+      ..close();
+    canvas.drawPath(
+        path2,
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+///INK WELL LEFT CUSTOM BORDER
+class CustomWeaponsListLeftBorder extends ShapeBorder {
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => _buildPath(
+        rect,
+      );
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
+      _buildPath(rect);
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+    final path = _buildPath(
+      rect,
+    );
+    canvas.drawPath(path, Paint());
+  }
+
+  @override
+  ShapeBorder scale(double t) => CustomWeaponsListLeftBorder();
+
+  Path _buildPath(
+    Rect rect,
+  ) {
+    final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(0, rect.height)
+      ..lineTo(rect.width, rect.height)
+      ..lineTo(rect.width - 50.w, rect.height - 37.5.h)
+      ..lineTo(rect.width, rect.height - 75.h)
+      ..lineTo(rect.width - 50.w, rect.height - 112.5.h)
+      ..lineTo(rect.width, 0)
+      ..close();
+    return path;
+  }
+}
+
+///INK WELL RIGHT CUSTOM BORDER
+class CustomWeaponsListRightBorder extends ShapeBorder {
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => _buildPath(
+        rect,
+      );
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
+      _buildPath(rect);
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+    final path = _buildPath(
+      rect,
+    );
+    canvas.drawPath(path, Paint());
+  }
+
+  @override
+  ShapeBorder scale(double t) => CustomWeaponsListLeftBorder();
+
+  Path _buildPath(
+    Rect rect,
+  ) {
+    final path2 = Path()
+      ..moveTo(rect.width, 0)
+      ..lineTo(rect.width, rect.height)
+      ..lineTo(rect.width - rect.width, rect.height)
+      ..lineTo(rect.width - rect.width - 50.w, rect.height - 37.5.h)
+      ..lineTo(rect.width - rect.width, rect.height - 75.h)
+      ..lineTo(rect.width - rect.width - 50.w, rect.height - 112.5.h)
+      ..lineTo(0, 0)
+      ..close();
+    return path2;
+  }
 }

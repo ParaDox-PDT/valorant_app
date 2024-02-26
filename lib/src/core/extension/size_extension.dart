@@ -34,7 +34,7 @@ extension OrientationExtension on Orientation {
 extension Space on num {
   Gap get g => Gap(toDouble());
 
-  double get h => 812 * ((toDouble()/8.12) / 100);
+  double get h => (MediaQuery.sizeOf(rootNavigatorKey.currentContext!).height * ((toDouble()/8.12) / 100)).ceilToDouble();
 
-  double get w => 375 * ((toDouble()/3.75) / 100);
+  double get w => (MediaQuery.sizeOf(rootNavigatorKey.currentContext!).width * ((toDouble()/3.75) / 100)).ceilToDouble();
 }

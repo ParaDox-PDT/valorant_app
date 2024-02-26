@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:valorant_app/src/config/router/app_routes.dart';
 import 'package:valorant_app/src/config/themes/themes.dart';
 import 'package:valorant_app/src/core/localization/app_localizations.dart';
 

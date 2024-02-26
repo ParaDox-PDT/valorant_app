@@ -31,10 +31,14 @@ mixin MainPageMixin on State<MainPage> {
         context.push(Routes.agents);
       },
       () {
-      context.push(Routes.weapons);
+        context.push(Routes.weapons);
       },
-      () {},
-      () {},
+      () {
+        debugPrint('WIDTH:${MediaQuery.sizeOf(context).width}');
+      },
+      () {
+        debugPrint('HEIGHT:${MediaQuery.sizeOf(context).height}');
+      },
       () {},
       () {},
       () {},
