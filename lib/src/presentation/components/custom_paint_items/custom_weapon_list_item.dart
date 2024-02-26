@@ -3,13 +3,18 @@ part of 'custom_paint_items.dart';
 ///WEAPONS LEFT ITEM
 class CustomWeaponListLeftItem extends StatelessWidget {
   const CustomWeaponListLeftItem(
-      {super.key, required this.color, required this.child});
+      {super.key,
+      required this.color,
+      required this.child,
+      required this.onTap});
 
   final Color color;
   final Widget child;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => ZoomTapAnimation(
+        onTap: onTap,
         child: CustomPaint(
           size: Size(double.infinity, 150.h),
           painter: WeaponListLeftItem(color: color),
@@ -65,13 +70,15 @@ class WeaponListLeftItem extends CustomPainter {
 ///WEAPONS RIGHT ITEM
 class CustomWeaponListRightItem extends StatelessWidget {
   const CustomWeaponListRightItem(
-      {super.key, required this.color, required this.child});
+      {super.key, required this.color, required this.child, required this.onTap});
 
   final Color color;
   final Widget child;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => ZoomTapAnimation(
+        onTap: onTap,
         child: CustomPaint(
           size: Size(double.infinity, 150.h),
           painter: WeaponListRightItem(color: color),
@@ -121,86 +128,4 @@ class WeaponListRightItem extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-///INK WELL LEFT CUSTOM BORDER
-class CustomWeaponsListLeftBorder extends ShapeBorder {
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => _buildPath(
-        rect,
-      );
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
-      _buildPath(rect);
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    final path = _buildPath(
-      rect,
-    );
-    canvas.drawPath(path, Paint());
-  }
-
-  @override
-  ShapeBorder scale(double t) => CustomWeaponsListLeftBorder();
-
-  Path _buildPath(
-    Rect rect,
-  ) {
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(0, rect.height)
-      ..lineTo(rect.width, rect.height)
-      ..lineTo(rect.width - 50.w, rect.height - 37.5.h)
-      ..lineTo(rect.width, rect.height - 75.h)
-      ..lineTo(rect.width - 50.w, rect.height - 112.5.h)
-      ..lineTo(rect.width, 0)
-      ..close();
-    return path;
-  }
-}
-
-///INK WELL RIGHT CUSTOM BORDER
-class CustomWeaponsListRightBorder extends ShapeBorder {
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => _buildPath(
-        rect,
-      );
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
-      _buildPath(rect);
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    final path = _buildPath(
-      rect,
-    );
-    canvas.drawPath(path, Paint());
-  }
-
-  @override
-  ShapeBorder scale(double t) => CustomWeaponsListLeftBorder();
-
-  Path _buildPath(
-    Rect rect,
-  ) {
-    final path2 = Path()
-      ..moveTo(rect.width, 0)
-      ..lineTo(rect.width, rect.height)
-      ..lineTo(rect.width - rect.width, rect.height)
-      ..lineTo(rect.width - rect.width - 50.w, rect.height - 37.5.h)
-      ..lineTo(rect.width - rect.width, rect.height - 75.h)
-      ..lineTo(rect.width - rect.width - 50.w, rect.height - 112.5.h)
-      ..lineTo(0, 0)
-      ..close();
-    return path2;
-  }
 }
