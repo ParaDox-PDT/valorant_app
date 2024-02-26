@@ -42,10 +42,24 @@ List<Widget> weaponDetailInfo(BuildContext context, WeaponsData? weaponData) {
 
   return List.generate(
     titles.length,
-    (index) => DetailPagesInfoItem(
-      title: titles[index],
-      text: texts[index],
-      isRole: true,
-    ),
+    (index) {
+      if (index.isOdd) {
+        return SlideInRight(
+          child: DetailPagesInfoItem(
+            title: titles[index],
+            text: texts[index],
+            isRole: true,
+          ),
+        );
+      } else {
+        return SlideInLeft(
+          child: DetailPagesInfoItem(
+            title: titles[index],
+            text: texts[index],
+            isRole: true,
+          ),
+        );
+      }
+    },
   );
 }
