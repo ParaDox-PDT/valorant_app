@@ -25,3 +25,7 @@ Color hexToColor(String hexColor) {
   }
   return Color(int.parse(hexColor.substring(0, 6), radix: 16) + 0xFF000000);
 }
+
+String getWeaponCategory(String weaponCategory) => weaponCategory.substring(
+      weaponCategory.lastIndexOf(':') + 1,
+    );
