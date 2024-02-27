@@ -37,7 +37,12 @@ class AgentDetailAppBar extends StatelessWidget {
                       preferredSize: Size.fromHeight(360.h),
                       child: CachedNetworkImage(
                         imageUrl: image,
-                        fadeInDuration: const Duration(milliseconds: 300),
+                        placeholder: (context, url) => Center(
+                          child: StaggeredDotsWave(
+                            size: 50,
+                            color: context.colorScheme.secondary,
+                          ),
+                        ),
                         fadeOutDuration: const Duration(milliseconds: 300),
                         height: 360.h,
                         fit: BoxFit.cover,

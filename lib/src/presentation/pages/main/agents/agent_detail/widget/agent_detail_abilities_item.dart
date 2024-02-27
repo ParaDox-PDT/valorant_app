@@ -40,6 +40,15 @@ class AgentDetailAbilitiesItem extends StatelessWidget {
                       width: 35.w,
                       height: 35.w,
                       fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          Center(
+                            child: StaggeredDotsWave(
+                              size: 35.w,
+                              color: context
+                                  .colorScheme.secondary,
+                            ),
+                          ),
+                      fadeOutDuration: const Duration(milliseconds: 300),
                       errorWidget: (context, url, error) => Center(
                         child: Icon(
                           Icons.image_not_supported_outlined,

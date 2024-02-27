@@ -13,6 +13,7 @@ import 'package:valorant_app/src/data/models/weapons/weapons_response.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_app/src/presentation/components/custom_paint_items/custom_paint_items.dart';
 import 'package:valorant_app/src/presentation/components/custom_sliver_app_bar/custom_sliver_app_bar.dart';
+import 'package:valorant_app/src/presentation/components/loading_widgets/staggered_dots_wave.dart';
 import 'package:valorant_app/src/presentation/pages/main/agents/agents_page_part.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 

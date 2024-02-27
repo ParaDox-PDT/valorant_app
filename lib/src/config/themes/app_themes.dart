@@ -91,12 +91,14 @@ final ThemeData lightTheme = appTheme.copyWith(
     ),
   ),
   inputDecorationTheme: const InputDecorationTheme(),
-  bottomSheetTheme: const BottomSheetThemeData(
+  bottomSheetTheme: BottomSheetThemeData(
     elevation: 0,
     showDragHandle: true,
-    backgroundColor: Colors.white,
+    dragHandleSize: const Size(100, 5),
+    backgroundColor: const Color(0xFF20262D),
+    dragHandleColor: colorLightScheme.secondary,
     surfaceTintColor: Colors.white,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(16),
         topRight: Radius.circular(16),

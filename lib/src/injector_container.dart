@@ -16,6 +16,7 @@ import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_d
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/video_player_bloc/video_player_bloc.dart';
 import 'package:valorant_app/src/presentation/components/cupertino_back/cupertino_back_gesture.dart';
 import 'package:valorant_app/src/presentation/pages/internet_connection/internet_connection_part.dart';
 
@@ -94,6 +95,9 @@ Future<void> init() async {
   /// weapons
   weaponsFeature();
   weaponDetailFeature();
+
+  /// video player
+  videoPlayerFeature();
 }
 
 void mainFeature() {
@@ -127,7 +131,11 @@ void weaponsFeature() {
 
 void weaponDetailFeature() {
   sl.registerFactory<WeaponDetailBloc>(
-          () => WeaponDetailBloc(weaponsRepository: sl()));
+      () => WeaponDetailBloc(weaponsRepository: sl()));
+}
+
+void videoPlayerFeature() {
+  sl.registerFactory<VideoPlayerBloc>(VideoPlayerBloc.new);
 }
 
 Future<void> initHive() async {

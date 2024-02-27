@@ -19,6 +19,15 @@ class WeaponsListInnerItem extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: image,
               height: 80.h,
+              placeholder: (context, url) =>
+                  Center(
+                    child: StaggeredDotsWave(
+                      size: 40,
+                      color: context
+                          .colorScheme.secondary,
+                    ),
+                  ),
+              fadeOutDuration: const Duration(milliseconds: 300),
               fit: BoxFit.fitWidth,
               errorWidget: (context, url, error) => Center(
                 child: Icon(
