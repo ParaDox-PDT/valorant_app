@@ -45,7 +45,7 @@ class CachedNetworkSvgImage extends StatelessWidget {
         height: height,
         child: Center(
           child: errorBuilder == null
-              ? const Icon(Icons.error)
+              ? const Icon(Icons.image_not_supported_outlined)
               : errorBuilder!(context),
         ),
       );
@@ -76,7 +76,7 @@ class CachedNetworkSvgImage extends StatelessWidget {
             height: height,
             child: Center(
               child: placeholderBuilder == null
-                  ? const Icon(Icons.error)
+                  ? const Icon(Icons.image_not_supported_outlined)
                   : placeholderBuilder!(context),
             ),
           );
@@ -88,7 +88,7 @@ class CachedNetworkSvgImage extends StatelessWidget {
       height: height,
       child: Center(
         child: placeholderBuilder == null
-            ? const Icon(Icons.error)
+            ? const Icon(Icons.image_not_supported_outlined)
             : placeholderBuilder!(context),
       ),
     );

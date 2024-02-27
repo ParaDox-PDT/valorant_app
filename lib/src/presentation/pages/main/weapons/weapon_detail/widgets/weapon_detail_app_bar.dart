@@ -10,7 +10,7 @@ class WeaponDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SliverToBoxAdapter(
         child: SizedBox(
-          height: context.isMobile ? 450.h : 600.h,
+          height: context.isMobile ? 320.h : 600.h,
           child: Stack(
             children: [
               CustomTriangle(
@@ -45,7 +45,7 @@ class WeaponDetailAppBar extends StatelessWidget {
                           fit: BoxFit.contain,
                           errorWidget: (context, url, error) => Center(
                             child: Icon(
-                              Icons.error,
+                              Icons.image_not_supported_outlined,
                               color: colorLightScheme.secondary,
                               size: 50.w,
                             ),

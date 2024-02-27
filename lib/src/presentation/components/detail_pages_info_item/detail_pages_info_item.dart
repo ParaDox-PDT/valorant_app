@@ -24,7 +24,7 @@ class DetailPagesInfoItem extends StatelessWidget {
                 children: [
                   Text(
                     '$title:',
-                    style: AppTypography.pRegular
+                    style: AppTypography.st2Regular
                         .copyWith(color: context.colorScheme.secondary),
                   ),
                   const Spacer(),
@@ -36,7 +36,7 @@ class DetailPagesInfoItem extends StatelessWidget {
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) => Center(
                         child: Icon(
-                          Icons.error,
+                          Icons.image_not_supported_outlined,
                           color: colorLightScheme.secondary,
                           size: 15.w,
                         ),

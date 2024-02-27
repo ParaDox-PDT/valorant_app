@@ -36,7 +36,7 @@ class AgentDetailInfoItem extends StatelessWidget {
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) => Center(
                         child: Icon(
-                          Icons.error,
+                          Icons.image_not_supported_outlined,
                           color: colorLightScheme.secondary,
                           size: 15.w,
                         ),

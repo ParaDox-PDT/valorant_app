@@ -34,12 +34,29 @@ class _WeaponDetailPageState extends State<WeaponDetailPage>
                       WeaponDetailAppBar(
                           image: widget.image, uuid: widget.uuid),
                       SliverPadding(
-                        padding: const EdgeInsets.all(34),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 34, vertical: 16),
                         sliver: SliverList(
                           delegate: SliverChildListDelegate(
                             weaponDetailInfo(context, weaponData),
                           ),
                         ),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 34,
+                        ),
+                        sliver: SliverToBoxAdapter(
+                          child: Text(
+                            '${'skins'.tr}:',
+                            style: AppTypography.t3Regular.copyWith(
+                              color: context.colorScheme.secondary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      WeaponSkinsList(
+                        skins: weaponData?.skins ?? [],
                       ),
                     ],
                   ),

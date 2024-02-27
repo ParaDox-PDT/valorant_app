@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:valorant_app/src/config/themes/app_typography.dart';
 import 'package:valorant_app/src/config/themes/themes.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/extension/extension.dart';
@@ -22,3 +23,4 @@ part 'mixin/weapon_detail_mixin.dart';
 part 'widgets/weapon_detail_app_bar.dart';
 
 part 'widgets/weapon_detail_info.dart';
+part 'widgets/weapon_skins_list.dart';
