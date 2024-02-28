@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agents_response.dart';
+import 'package:valorant_app/src/data/models/ranks/ranks_response.dart';
 import 'package:valorant_app/src/data/models/weapons/weapons_detail_response.dart';
 import 'package:valorant_app/src/data/models/weapons/weapons_response.dart';
 
@@ -10,7 +11,6 @@ final class LocalSource {
   const LocalSource(this.box);
 
   final Box<dynamic> box;
-
 
   /// AGENTS----------------------------------------------
   Future<void> setAgents(Agents agents) async {
@@ -38,13 +38,21 @@ final class LocalSource {
         '${AppKeys.weaponDetail}_$uuid',
       );
 
+  /// RANKS----------------------------------------------
+  Future<void> setRanks(RanksResponse ranks) async {
+    await box.put(AppKeys.ranks, ranks);
+  }
+
+  RanksResponse? getRanks() => box.get(
+        AppKeys.ranks,
+      );
 
   /// OTHER ----------------------------------------------
 
   String get locale => box.get(
-    AppKeys.languageCode,
-    defaultValue: defaultLocale,
-  ) as String;
+        AppKeys.languageCode,
+        defaultValue: defaultLocale,
+      ) as String;
 
   bool get lanSelected =>
       box.get(AppKeys.langSelected, defaultValue: false) is bool
@@ -98,4 +106,7 @@ HiveInterface hiveRegister() => Hive
   ..registerAdapter(WeaponsShopDataAdapter())
   ..registerAdapter(WeaponsSkinsAdapter())
   ..registerAdapter(WeaponsStatsAdapter())
-  ..registerAdapter(WeaponsDetailResponseAdapter());
+  ..registerAdapter(WeaponsDetailResponseAdapter())
+  ..registerAdapter(RanksResponseAdapter())
+  ..registerAdapter(RanksDataAdapter())
+  ..registerAdapter(RanksTiersAdapter());

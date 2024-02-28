@@ -16,6 +16,9 @@ sealed class Constants{
   ///weapons
   static const weaponsUrl = '/weapons';
 
+  ///ranks
+  static const ranksUrl = '/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04';
+
 
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }
