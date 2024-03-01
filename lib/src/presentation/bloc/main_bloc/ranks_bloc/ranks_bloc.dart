@@ -18,15 +18,21 @@ class RanksBloc extends Bloc<RanksEvent, RanksState> {
     required this.networkInfo,
   }) : super(const RanksState()) {
     on<RanksGetAllEvent>(_onGetRanks);
+    on<RanksChangePositionEvent>(_onChangePosition);
   }
 
   final RanksRepository ranksRepository;
   final NetworkInfo networkInfo;
 
+  void _onChangePosition(
+      RanksChangePositionEvent event, Emitter<RanksState> emit) {
+    emit(
+      state.copyWith(isChangePosition: state.isChangePosition),
+    );
+  }
+
   Future<void> _onGetRanks(
       RanksGetAllEvent event, Emitter<RanksState> emit) async {
-    final List<RanksTiers> ranks = [];
-
     final RanksResponse? ranksResponse = localSource.getRanks();
 
     if (ranksResponse != null) {
@@ -51,7 +57,6 @@ class RanksBloc extends Bloc<RanksEvent, RanksState> {
           state.copyWith(ranksStatus: BlocStatus.error),
         ),
         (r) {
-          ranks.clear();
           emit(
             state.copyWith(
               ranksStatus: BlocStatus.success,
@@ -60,6 +65,13 @@ class RanksBloc extends Bloc<RanksEvent, RanksState> {
           );
           localSource.setRanks(r);
         },
+      );
+    }else{
+      emit(
+        state.copyWith(
+          ranksStatus: BlocStatus.success,
+          ranks: ranksResponse?.data?.tiers ?? [],
+        ),
       );
     }
   }

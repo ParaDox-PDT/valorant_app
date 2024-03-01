@@ -1,7 +1,7 @@
 part of '../agents_page_part.dart';
 
 List<Widget> agentsListShimmer(BuildContext context) => List.generate(
-      6,
+      10,
       (index) => DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(color: context.colorScheme.secondary),

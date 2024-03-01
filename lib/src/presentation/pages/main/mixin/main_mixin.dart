@@ -34,10 +34,11 @@ mixin MainPageMixin on State<MainPage> {
         context.push(Routes.weapons);
       },
       () {
-        debugPrint('WIDTH:${MediaQuery.sizeOf(context).width}');
+        context.push(Routes.ranks);
       },
       () {
-        debugPrint('HEIGHT:${MediaQuery.sizeOf(context).height}');
+        context.push(Routes.sprays);
+
       },
       () {},
       () {},

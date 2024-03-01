@@ -10,3 +10,10 @@ class RanksGetAllEvent extends RanksEvent {
   @override
   List<Object> get props => [];
 }
+
+class RanksChangePositionEvent extends RanksEvent {
+  const RanksChangePositionEvent();
+
+  @override
+  List<Object> get props => [];
+}

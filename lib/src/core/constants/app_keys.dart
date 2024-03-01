@@ -9,6 +9,8 @@ sealed class AppKeys{
   static const String weapons = 'weapons';
   static const String weaponDetail = 'weapons_detail';
   static const String ranks = 'ranks';
+  static const String ranksRowKeys = 'ranks_row_key';
+  static const String sprays = 'sprays';
 
 
   /// HERO tags

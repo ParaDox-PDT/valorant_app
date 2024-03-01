@@ -4,6 +4,7 @@ import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agents_response.dart';
 import 'package:valorant_app/src/data/models/ranks/ranks_response.dart';
+import 'package:valorant_app/src/data/models/sprays/sprays_response.dart';
 import 'package:valorant_app/src/data/models/weapons/weapons_detail_response.dart';
 import 'package:valorant_app/src/data/models/weapons/weapons_response.dart';
 
@@ -48,6 +49,15 @@ final class LocalSource {
       );
 
   /// OTHER ----------------------------------------------
+
+  /// SPRAYS----------------------------------------------
+  Future<void> setSprays(SpraysResponse sprays) async {
+    await box.put(AppKeys.sprays, sprays);
+  }
+
+  SpraysResponse? getSprays() => box.get(
+        AppKeys.sprays,
+      );
 
   String get locale => box.get(
         AppKeys.languageCode,
@@ -109,4 +119,7 @@ HiveInterface hiveRegister() => Hive
   ..registerAdapter(WeaponsDetailResponseAdapter())
   ..registerAdapter(RanksResponseAdapter())
   ..registerAdapter(RanksDataAdapter())
-  ..registerAdapter(RanksTiersAdapter());
+  ..registerAdapter(RanksTiersAdapter())
+  ..registerAdapter(SpraysResponseAdapter())
+  ..registerAdapter(SpraysDataAdapter())
+  ..registerAdapter(SpraysLevelsAdapter());
