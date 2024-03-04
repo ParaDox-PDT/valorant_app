@@ -58,6 +58,12 @@ final ThemeData lightTheme = appTheme.copyWith(
     surfaceTintColor: Colors.white,
     shadowColor: Colors.black45,
   ),
+  scrollbarTheme: ScrollbarThemeData(
+    thickness: MaterialStateProperty.resolveWith((states) => 3),
+    thumbColor: MaterialStateProperty.resolveWith((states) => colorLightScheme.secondary),
+    interactive: true,
+
+  ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: colorLightScheme.primary,
     foregroundColor: Colors.white,

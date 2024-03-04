@@ -29,6 +29,7 @@ import 'config/router/app_routes.dart';
 import 'core/platform/network_info.dart';
 import 'data/source/local_source.dart';
 import 'presentation/bloc/main_bloc/main_bloc.dart';
+import 'presentation/bloc/matrix4_bloc/matrix4_bloc.dart';
 import 'presentation/bloc/splash_bloc/splash_bloc.dart';
 
 final sl = GetIt.instance;
@@ -160,6 +161,10 @@ void spraysFeature() {
     ..registerLazySingleton<SpraysRepository>(
       () => SpraysRepositoryImpl(dio: sl()),
     );
+}
+
+void matrix4Feature() {
+  sl.registerFactory<Matrix4Bloc>(Matrix4Bloc.new);
 }
 
 void videoPlayerFeature() {
