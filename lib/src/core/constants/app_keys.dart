@@ -17,4 +17,5 @@ sealed class AppKeys{
   /// HERO tags
   static const  String weaponDetailImage = 'weapon_detail_image';
   static const  String skinChromas = 'skin_chromas';
+  static const  String playerCardsImage = 'player_cards_image';
 }

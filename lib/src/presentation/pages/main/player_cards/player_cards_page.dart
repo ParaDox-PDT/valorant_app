@@ -8,13 +8,16 @@ class PlayerCardsPage extends StatefulWidget {
 }
 
 class _PlayerCardsPageState extends State<PlayerCardsPage> {
+  final ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<PlayerCardsBloc, PlayerCardsState>(
         buildWhen: (p, c) => p != c,
         builder: (_, state) => Scaffold(
           backgroundColor: _.colorScheme.primary,
-          body: CustomScrollView(
+          body: Scrollbar(controller: scrollController,child: CustomScrollView(
+            controller: scrollController,
             slivers: [
               CustomSliverAppBar(title: 'player_cards'.tr),
               SliverPadding(
@@ -22,26 +25,20 @@ class _PlayerCardsPageState extends State<PlayerCardsPage> {
                 sliver: SliverGrid(
                   delegate: SliverChildListDelegate(
                     state.playerCardsStatus == BlocStatus.loading &&
-                            state.playerCards.isEmpty
+                        state.playerCards.isEmpty
                         ? agentsListShimmer(context)
-                        : List.generate(
-                            state.playerCards.length,
-                            (index) => PlayerCardsListItem(
-                              image: state.playerCards[index].largeArt,
-                              title: state.playerCards[index].displayName ??
-                                  'null',
-                            ),
-                          ),
+                        : playerCardsList(
+                        playerCards: state.playerCards, context: _),
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 10,
-                      childAspectRatio: 272/642),
+                      childAspectRatio: 272 / 642),
                 ),
               ),
             ],
-          ),
+          ),),
         ),
       );
 }
