@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 part 'app_keys.dart';
 
-sealed class Constants{
+sealed class Constants {
   const Constants._();
 
   /// test
   static const baseUrl = 'https://valorant-api.com/v1';
-
 
   ///agents
   static const agentsUrl = '/agents';
@@ -17,11 +16,14 @@ sealed class Constants{
   static const weaponsUrl = '/weapons';
 
   ///ranks
-  static const ranksUrl = '/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04';
+  static const ranksUrl =
+      '/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04';
 
   ///sprays
   static const spraysUrl = '/sprays';
 
+  ///player cards
+  static const playerCardsUrl = '/playercards';
 
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }

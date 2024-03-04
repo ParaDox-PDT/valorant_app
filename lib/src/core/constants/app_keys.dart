@@ -11,6 +11,7 @@ sealed class AppKeys{
   static const String ranks = 'ranks';
   static const String ranksRowKeys = 'ranks_row_key';
   static const String sprays = 'sprays';
+  static const String playerCards = 'player_cards';
 
 
   /// HERO tags

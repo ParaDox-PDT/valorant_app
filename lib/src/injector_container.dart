@@ -11,11 +11,13 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/domain/repositories/agents/agents_repository.dart';
+import 'package:valorant_app/src/domain/repositories/player_cards/player_cards_repository.dart';
 import 'package:valorant_app/src/domain/repositories/ranks/ranks_repository.dart';
 import 'package:valorant_app/src/domain/repositories/sprays/sprays_repository.dart';
 import 'package:valorant_app/src/domain/repositories/weapons/weapons_repository.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/player_cards_bloc/player_cards_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/sprays_bloc/sprays_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
@@ -107,6 +109,9 @@ Future<void> init() async {
   /// sprays
   spraysFeature();
 
+  /// player cards
+  playerCardsFeature();
+
   /// video player
   videoPlayerFeature();
 }
@@ -160,6 +165,15 @@ void spraysFeature() {
         () => SpraysBloc(spraysRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<SpraysRepository>(
       () => SpraysRepositoryImpl(dio: sl()),
+    );
+}
+
+void playerCardsFeature() {
+  sl
+    ..registerFactory<PlayerCardsBloc>(
+            () => PlayerCardsBloc(playerCardsRepository: sl(), networkInfo: sl()))
+    ..registerLazySingleton<PlayerCardsRepository>(
+          () => PlayerCardsRepositoryImpl(dio: sl()),
     );
 }
 

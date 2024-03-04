@@ -1,6 +1,6 @@
 part of 'app_routes.dart';
 
-sealed class Routes{
+sealed class Routes {
   Routes._();
 
   static const String initial = '/';
@@ -23,5 +23,6 @@ sealed class Routes{
   //sprays
   static const String sprays = '/sprays';
 
-
+  //player cards
+  static const String playerCards = '/player_cards';
 }

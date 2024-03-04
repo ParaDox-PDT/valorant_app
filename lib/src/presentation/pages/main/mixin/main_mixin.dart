@@ -38,9 +38,10 @@ mixin MainPageMixin on State<MainPage> {
       },
       () {
         context.push(Routes.sprays);
-
       },
-      () {},
+      () {
+        context.push(Routes.playerCards);
+      },
       () {},
       () {},
     ];

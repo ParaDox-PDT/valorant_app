@@ -7,6 +7,7 @@ import 'package:valorant_app/src/injector_container.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/main_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/player_cards_bloc/player_cards_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/sprays_bloc/sprays_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
@@ -16,6 +17,7 @@ import 'package:valorant_app/src/presentation/pages/internet_connection/internet
 import 'package:valorant_app/src/presentation/pages/main/agents/agent_detail/agent_detail_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/agents/agents_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/main_page_part.dart';
+import 'package:valorant_app/src/presentation/pages/main/player_cards/player_cards_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/ranks/ranks_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/sprays/sprays_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/weapons/weapon_detail/weapon_detail_page_part.dart';
@@ -112,7 +114,6 @@ final GoRouter router = GoRouter(
       ),
     ),
 
-
     /// ranks
     GoRoute(
       path: Routes.ranks,
@@ -136,6 +137,19 @@ final GoRouter router = GoRouter(
             const SpraysGetAllEvent(),
           ),
         child: const SpraysPage(),
+      ),
+    ),
+
+    /// player cards
+    GoRoute(
+      path: Routes.playerCards,
+      name: Routes.playerCards,
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<PlayerCardsBloc>()
+          ..add(
+            const PlayerCardsGetAllEvent(),
+          ),
+        child: const PlayerCardsPage(),
       ),
     ),
 
