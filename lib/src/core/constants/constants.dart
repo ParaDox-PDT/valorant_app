@@ -25,6 +25,10 @@ sealed class Constants {
   ///player cards
   static const playerCardsUrl = '/playercards';
 
+  ///maps
+  static const mapsUrl = '/maps';
+  static const mapsByIdUrl = '/maps';
+
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }
 

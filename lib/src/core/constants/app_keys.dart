@@ -12,10 +12,13 @@ sealed class AppKeys{
   static const String ranksRowKeys = 'ranks_row_key';
   static const String sprays = 'sprays';
   static const String playerCards = 'player_cards';
+  static const String maps = 'maps';
+  static const String mapDetail = 'map_detail';
 
 
   /// HERO tags
   static const  String weaponDetailImage = 'weapon_detail_image';
   static const  String skinChromas = 'skin_chromas';
   static const  String playerCardsImage = 'player_cards_image';
+  static const  String mapDetailImage = 'map_detail_image';
 }

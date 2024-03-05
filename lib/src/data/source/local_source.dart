@@ -3,6 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/agents/agents_response.dart';
+import 'package:valorant_app/src/data/models/maps/map_detail_response.dart';
+import 'package:valorant_app/src/data/models/maps/maps_response.dart';
 import 'package:valorant_app/src/data/models/player_cards/player_cards_response.dart';
 import 'package:valorant_app/src/data/models/ranks/ranks_response.dart';
 import 'package:valorant_app/src/data/models/sprays/sprays_response.dart';
@@ -65,6 +67,23 @@ final class LocalSource {
 
   PlayerCardsResponse? getPlayerCards() => box.get(
         AppKeys.playerCards,
+      );
+
+  /// PLAYERS CARDS----------------------------------------------
+  Future<void> setMaps(MapsResponse maps) async {
+    await box.put(AppKeys.maps, maps);
+  }
+
+  MapsResponse? getMaps() => box.get(
+        AppKeys.maps,
+      );
+
+  Future<void> setMapDetail(MapsData? mapData) async {
+    await box.put('${AppKeys.mapDetail}_${mapData?.uuid}', mapData);
+  }
+
+  MapsData? getMapDetail(String uuid) => box.get(
+        '${AppKeys.mapDetail}_$uuid',
       );
 
   /// OTHER ----------------------------------------------
@@ -134,4 +153,9 @@ HiveInterface hiveRegister() => Hive
   ..registerAdapter(SpraysDataAdapter())
   ..registerAdapter(SpraysLevelsAdapter())
   ..registerAdapter(PlayerCardsResponseAdapter())
-  ..registerAdapter(PlayerCardsDataAdapter());
+  ..registerAdapter(PlayerCardsDataAdapter())
+  ..registerAdapter(MapsResponseAdapter())
+  ..registerAdapter(MapsDataAdapter())
+  ..registerAdapter(MapsCalloutsAdapter())
+  ..registerAdapter(MapsLocationAdapter())
+  ..registerAdapter(MapDetailResponseAdapter());
