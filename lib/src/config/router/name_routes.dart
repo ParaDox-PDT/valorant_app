@@ -25,4 +25,7 @@ sealed class Routes {
 
   //player cards
   static const String playerCards = '/player_cards';
+
+  //maps
+  static const String maps = '/maps';
 }

@@ -69,7 +69,7 @@ final class LocalSource {
         AppKeys.playerCards,
       );
 
-  /// PLAYERS CARDS----------------------------------------------
+  /// MAPS ----------------------------------------------
   Future<void> setMaps(MapsResponse maps) async {
     await box.put(AppKeys.maps, maps);
   }

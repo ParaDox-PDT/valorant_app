@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:valorant_app/src/data/source/local_source.dart';
-
+import 'package:valorant_app/src/injector_container_part.dart';
 import 'src/app.dart';
 import 'src/app_options.dart';
 import 'src/config/router/app_routes.dart';
 import 'src/core/service/notification_service.dart';
-import 'src/injector_container.dart';
+
 import 'src/presentation/bloc/log_bloc_observer.dart';
 
 void main() async {

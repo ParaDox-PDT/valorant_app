@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valorant_app/src/data/source/local_source.dart';
-import 'package:valorant_app/src/injector_container.dart';
+import 'package:valorant_app/src/injector_container_part.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/main_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/map_bloc/map_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/player_cards_bloc/player_cards_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/sprays_bloc/sprays_bloc.dart';
@@ -17,6 +18,7 @@ import 'package:valorant_app/src/presentation/pages/internet_connection/internet
 import 'package:valorant_app/src/presentation/pages/main/agents/agent_detail/agent_detail_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/agents/agents_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/main_page_part.dart';
+import 'package:valorant_app/src/presentation/pages/main/maps/maps_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/player_cards/player_cards_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/ranks/ranks_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/sprays/sprays_page_part.dart';
@@ -150,6 +152,19 @@ final GoRouter router = GoRouter(
             const PlayerCardsGetAllEvent(),
           ),
         child: const PlayerCardsPage(),
+      ),
+    ),
+
+    /// maps
+    GoRoute(
+      path: Routes.maps,
+      name: Routes.maps,
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<MapBloc>()
+          ..add(
+            const MapGetAllEvent(),
+          ),
+        child: const MapsPage(),
       ),
     ),
 
