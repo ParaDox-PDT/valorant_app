@@ -28,4 +28,5 @@ sealed class Routes {
 
   //maps
   static const String maps = '/maps';
+  static const String mapDetail = '/map_detail';
 }

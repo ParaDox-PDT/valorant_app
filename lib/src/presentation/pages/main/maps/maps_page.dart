@@ -18,53 +18,12 @@ class _MapsPageState extends State<MapsPage> {
               CustomSliverAppBar(title: 'maps'.tr),
               SliverPadding(
                 padding: AppUtils.kPaddingAll24,
-                sliver: SliverGrid(
+                sliver: SliverList(
                   delegate: SliverChildListDelegate(
-                    state.mapsStatus == BlocStatus.loading
-                        ? agentsListShimmer(context)
-                        : List.generate(
-                            state.maps.length,
-                            (index) => Column(
-                              children: [
-                                DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: _.colorScheme.secondary,width: 1.5),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: CachedNetworkImage(
-                                      imageUrl: state.maps[index].listViewIconTall ??
-                                          'null',
-                                      placeholder: (context, url) => Center(
-                                        child: StaggeredDotsWave(
-                                          size: 50,
-                                          color: context.colorScheme.secondary,
-                                        ),
-                                      ),
-                                      fadeOutDuration: const Duration(milliseconds: 300),
-                                      fit: BoxFit.fitHeight,
-                                      errorWidget: (context, url, error) => Center(
-                                        child: Icon(
-                                          Icons.image_not_supported_outlined,
-                                          color: colorLightScheme.secondary,
-                                          size: 50.w,
-                                        ),
-                                      ),
-                                    )
-
-
-
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                    state.mapsStatus == BlocStatus.loading && state.maps.isEmpty
+                        ? mapsShimmer(context: context)
+                        : mapsList(context: context, maps: state.maps),
                   ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 348 / 748),
                 ),
               ),
             ],

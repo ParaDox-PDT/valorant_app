@@ -33,6 +33,7 @@ import 'config/router/app_routes.dart';
 import 'core/platform/network_info.dart';
 import 'data/source/local_source.dart';
 import 'presentation/bloc/main_bloc/main_bloc.dart';
+import 'presentation/bloc/main_bloc/map_bloc/map_detail_bloc/map_detail_bloc.dart';
 import 'presentation/bloc/matrix4_bloc/matrix4_bloc.dart';
 import 'presentation/bloc/splash_bloc/splash_bloc.dart';
 

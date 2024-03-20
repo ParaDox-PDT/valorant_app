@@ -8,8 +8,7 @@ Future<void> init() async {
   await initHive();
 
   sl.registerLazySingleton(
-        () =>
-    Dio()
+    () => Dio()
       ..options = BaseOptions(
           contentType: 'application/json',
           sendTimeout: const Duration(seconds: 15),
@@ -22,43 +21,42 @@ Future<void> init() async {
             requestBody: kDebugMode,
             responseBody: kDebugMode,
             logPrint: (object) =>
-            kDebugMode ? log('dio: ${object.toString()}') : null,
+                kDebugMode ? log('dio: ${object.toString()}') : null,
           ),
           if (kDebugMode) chuck.getDioInterceptor(),
         ],
       ),
   );
   sl<Dio>().interceptors.add(
-    RetryInterceptor(
-      dio: sl<Dio>(),
-      toNoInternetPageNavigator: () async {
-        if (Platform.isAndroid) {
-          await Navigator.push(
-            rootNavigatorKey.currentContext!,
-            MaterialPageRoute(
-              builder: (context) => const InternetConnectionPage(),
-            ),
-          );
-        } else {
-          await Navigator.push(
-            rootNavigatorKey.currentContext!,
-            CupertinoPageRoute(
-              builder: (context) => const InternetConnectionPage(),
-            ),
-          );
-        }
-      },
-      logPrint: (String message) {
-        debugPrint('Connection error:$message');
-      },
-    ),
-  );
+        RetryInterceptor(
+          dio: sl<Dio>(),
+          toNoInternetPageNavigator: () async {
+            if (Platform.isAndroid) {
+              await Navigator.push(
+                rootNavigatorKey.currentContext!,
+                MaterialPageRoute(
+                  builder: (context) => const InternetConnectionPage(),
+                ),
+              );
+            } else {
+              await Navigator.push(
+                rootNavigatorKey.currentContext!,
+                CupertinoPageRoute(
+                  builder: (context) => const InternetConnectionPage(),
+                ),
+              );
+            }
+          },
+          logPrint: (String message) {
+            debugPrint('Connection error:$message');
+          },
+        ),
+      );
 
   sl
     ..registerSingleton<LocalSource>(LocalSource(_box))
-    ..registerLazySingleton(
-        InternetConnectionChecker.new)..registerLazySingleton<NetworkInfo>(() =>
-      NetworkInfoImpl(sl()));
+    ..registerLazySingleton(InternetConnectionChecker.new)
+    ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   /// main
   mainFeature();
@@ -83,6 +81,9 @@ Future<void> init() async {
   /// maps
   mapsFeature();
 
+  /// map detail
+  mapDetailFeature();
+
   /// video player
   videoPlayerFeature();
 }
@@ -97,65 +98,69 @@ void mainFeature() {
 void agentsFeature() {
   sl
     ..registerFactory<AgentsBloc>(
-          () => AgentsBloc(sl(), sl()),
+      () => AgentsBloc(sl(), sl()),
     )
     ..registerLazySingleton<AgentsRepository>(
-          () => AgentsRepositoryImpl(dio: sl()),
+      () => AgentsRepositoryImpl(dio: sl()),
     );
 }
 
 void agentDetailFeature() {
   sl.registerFactory<AgentDetailBloc>(
-          () => AgentDetailBloc(agentsRepository: sl()));
+      () => AgentDetailBloc(agentsRepository: sl()));
 }
 
 void weaponsFeature() {
   sl
     ..registerFactory<WeaponsBloc>(() => WeaponsBloc(sl(), sl()))
     ..registerLazySingleton<WeaponsRepository>(
-            () => WeaponsRepositoryImpl(dio: sl()));
+        () => WeaponsRepositoryImpl(dio: sl()));
 }
 
 void weaponDetailFeature() {
   sl.registerFactory<WeaponDetailBloc>(
-          () => WeaponDetailBloc(weaponsRepository: sl(), networkInfo: sl()));
+      () => WeaponDetailBloc(weaponsRepository: sl(), networkInfo: sl()));
 }
 
 void ranksFeature() {
   sl
     ..registerFactory<RanksBloc>(
-            () => RanksBloc(ranksRepository: sl(), networkInfo: sl()))
+        () => RanksBloc(ranksRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<RanksRepository>(
-          () => RanksRepositoryImpl(dio: sl()),
+      () => RanksRepositoryImpl(dio: sl()),
     );
 }
 
 void spraysFeature() {
   sl
     ..registerFactory<SpraysBloc>(
-            () => SpraysBloc(spraysRepository: sl(), networkInfo: sl()))
+        () => SpraysBloc(spraysRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<SpraysRepository>(
-          () => SpraysRepositoryImpl(dio: sl()),
+      () => SpraysRepositoryImpl(dio: sl()),
     );
 }
 
 void playerCardsFeature() {
   sl
     ..registerFactory<PlayerCardsBloc>(
-            () =>
-            PlayerCardsBloc(playerCardsRepository: sl(), networkInfo: sl()))
+        () => PlayerCardsBloc(playerCardsRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<PlayerCardsRepository>(
-          () => PlayerCardsRepositoryImpl(dio: sl()),
+      () => PlayerCardsRepositoryImpl(dio: sl()),
     );
 }
 
 void mapsFeature() {
   sl
     ..registerFactory<MapBloc>(
-            () => MapBloc(mapsRepository: sl(), networkInfo: sl()))
+        () => MapBloc(mapsRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<MapsRepository>(
-          () => MapsRepositoryImpl(dio: sl()),
+      () => MapsRepositoryImpl(dio: sl()),
     );
+}
+
+void mapDetailFeature() {
+  sl.registerFactory<MapDetailBloc>(
+      () => MapDetailBloc(mapsRepository: sl(), networkInfo: sl()));
 }
 
 void matrix4Feature() {
