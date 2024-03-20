@@ -9,6 +9,7 @@ List<Widget> mapsList(
           return SlideInRight(
             child: MapsListItem(
               image: maps[index].splash,
+              onTap: () => context.push(Routes.mapDetail,extra: maps[index].uuid),
               title: maps[index].displayName,
             ),
           );
@@ -16,6 +17,7 @@ List<Widget> mapsList(
           return SlideInLeft(
             child: MapsListItem(
               image: maps[index].splash,
+              onTap: () => context.push(Routes.mapDetail,extra: maps[index].uuid),
               title: maps[index].displayName,
             ),
           );

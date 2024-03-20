@@ -1,10 +1,11 @@
 part of '../maps_page_part.dart';
 
 class MapsListItem extends StatelessWidget {
-  const MapsListItem({super.key, this.image, this.title});
+  const MapsListItem({super.key, this.image, this.title, required this.onTap});
 
   final String? title;
   final String? image;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -16,7 +17,7 @@ class MapsListItem extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: (){},
+              onTap: onTap,
               splashColor: context.colorScheme.primary.withOpacity(0.3),
               highlightColor: context.colorScheme.primary.withOpacity(0.3),
               child: Padding(

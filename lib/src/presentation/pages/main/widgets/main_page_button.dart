@@ -28,7 +28,7 @@ class MainPageButton extends StatelessWidget {
                       padding: EdgeInsets.only(left: 16.w),
                       child: Text(
                         title,
-                        style: AppTypography.h2Regular,
+                        style: AppTypography.h3Regular,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
