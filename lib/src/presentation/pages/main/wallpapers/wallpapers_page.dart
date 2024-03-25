@@ -15,21 +15,28 @@ class _WallpapersPageState extends State<WallpapersPage> with WallpapersMixin {
         buildWhen: (p, c) => p != c,
         builder: (_, state) => Scaffold(
           backgroundColor: _.colorScheme.primary,
-          body: CustomScrollView(
-            slivers: [
-              CustomSliverAppBar(title: 'wallpapers'.tr),
-              SliverPadding(
-                padding: AppUtils.kPaddingAll16,
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate(
-                    state.wallpapersStatus == BlocStatus.loading &&
-                            state.wallpapers.isEmpty
-                        ? wallpapersShimmer(context: _)
-                        : wallpapersPhotos(context: context, wallpapers: state.wallpapers, bloc: _bloc),
+          body: Scrollbar(
+            controller: _scrollController,
+            child: CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                CustomSliverAppBar(title: 'wallpapers'.tr),
+                SliverPadding(
+                  padding: AppUtils.kPaddingAll16,
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      state.wallpapersStatus == BlocStatus.loading &&
+                              state.wallpapers.isEmpty
+                          ? wallpapersShimmer(context: _)
+                          : wallpapersPhotos(
+                              context: context,
+                              wallpapers: state.wallpapers,
+                              bloc: _bloc),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       );
