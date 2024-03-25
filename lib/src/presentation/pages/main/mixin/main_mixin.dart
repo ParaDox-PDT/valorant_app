@@ -15,7 +15,6 @@ mixin MainPageMixin on State<MainPage> {
       'sprays'.tr,
       'player_cards'.tr,
       'maps'.tr,
-      'gun_buddies'.tr,
     ];
     images = [
       AppImages.agents,
@@ -24,7 +23,6 @@ mixin MainPageMixin on State<MainPage> {
       AppImages.sprays,
       AppImages.playerCards,
       AppImages.maps,
-      AppImages.gunBuddies,
     ];
     onTaps = [
       () {
@@ -45,7 +43,6 @@ mixin MainPageMixin on State<MainPage> {
       () {
         context.push(Routes.maps);
       },
-      () {},
     ];
   }
 

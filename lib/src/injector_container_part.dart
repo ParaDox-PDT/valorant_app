@@ -15,6 +15,7 @@ import 'package:valorant_app/src/domain/repositories/maps/maps_repository.dart';
 import 'package:valorant_app/src/domain/repositories/player_cards/player_cards_repository.dart';
 import 'package:valorant_app/src/domain/repositories/ranks/ranks_repository.dart';
 import 'package:valorant_app/src/domain/repositories/sprays/sprays_repository.dart';
+import 'package:valorant_app/src/domain/repositories/wallpapers/wallpapers_repository.dart';
 import 'package:valorant_app/src/domain/repositories/weapons/weapons_repository.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agent_detail_bloc/agent_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/agents_bloc/agents_bloc.dart';
@@ -22,6 +23,7 @@ import 'package:valorant_app/src/presentation/bloc/main_bloc/map_bloc/map_bloc.d
 import 'package:valorant_app/src/presentation/bloc/main_bloc/player_cards_bloc/player_cards_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/sprays_bloc/sprays_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/wallpapers_bloc/wallpapers_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/video_player_bloc/video_player_bloc.dart';

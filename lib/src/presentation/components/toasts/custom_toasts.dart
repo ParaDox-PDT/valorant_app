@@ -6,7 +6,7 @@ import 'package:valorant_app/src/config/themes/themes.dart';
 import 'package:valorant_app/src/core/extension/extension.dart';
 
 Future<void> showNetworkErrorToast({required BuildContext context}) async {
-  final FToast fToast = FToast()
+  FToast()
     ..init(context)
     ..showToast(
         child: customToast(

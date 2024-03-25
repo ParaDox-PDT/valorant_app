@@ -84,6 +84,9 @@ Future<void> init() async {
   /// map detail
   mapDetailFeature();
 
+  /// wallpapers detail
+  wallpapersFeature();
+
   /// video player
   videoPlayerFeature();
 }
@@ -155,6 +158,15 @@ void mapsFeature() {
         () => MapBloc(mapsRepository: sl(), networkInfo: sl()))
     ..registerLazySingleton<MapsRepository>(
       () => MapsRepositoryImpl(dio: sl()),
+    );
+}
+
+void wallpapersFeature() {
+  sl
+    ..registerFactory<WallpapersBloc>(
+        () => WallpapersBloc(wallpapersRepository: sl(), networkInfo: sl()))
+    ..registerLazySingleton<WallpapersRepository>(
+      WallpapersRepositoryImpl.new,
     );
 }
 

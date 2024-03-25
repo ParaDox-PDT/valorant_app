@@ -23,10 +23,10 @@ void showSkinModalBottomSheet(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: GestureDetector(
               onTap: () {
-                showSkinPhotoViewDialog(
-                    context: context,
-                    url: chromas[i].fullRender ?? 'null',
-                    uuid: chromas[i].uuid ?? 'null');
+                showPhotoViewDialog(
+                  context: context,
+                  url: chromas[i].fullRender ?? 'null',
+                );
               },
               child: Column(
                 children: [
@@ -110,20 +110,3 @@ void showSkinModalBottomSheet(
   );
 }
 
-void showSkinPhotoViewDialog(
-    {required BuildContext context,
-    required String url,
-    required String uuid}) {
-  showDialog<Widget>(
-    context: context,
-    barrierColor: Colors.transparent,
-    builder: (_) => PhotoView(
-      enableRotation: true,
-      onTapUp: (context, details, controllerValue) => _.pop(),
-      backgroundDecoration: const BoxDecoration(color: Colors.black54),
-      imageProvider: CachedNetworkImageProvider(
-        url,
-      ),
-    ),
-  );
-}

@@ -23,7 +23,7 @@ class MainPageButtons extends StatelessWidget {
                     ...List.generate(
                       titles.length,
                       (index) {
-                        if(index == 0){
+                        if (index == 0) {
                           return SlideInDown(
                             child: MainPageButton(
                               title: titles[index],
@@ -31,8 +31,7 @@ class MainPageButtons extends StatelessWidget {
                               onTap: onTaps[index],
                             ),
                           );
-                        }
-                      else  if (index.isEven) {
+                        } else if (index.isEven) {
                           return SlideInLeft(
                             child: MainPageButton(
                               title: titles[index],
@@ -53,7 +52,9 @@ class MainPageButtons extends StatelessWidget {
                     ),
                     SlideInUp(
                       child: MainPageWallpapersButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.push(Routes.wallpapers);
+                        },
                       ),
                     )
                   ],

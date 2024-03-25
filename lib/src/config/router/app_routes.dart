@@ -12,6 +12,7 @@ import 'package:valorant_app/src/presentation/bloc/main_bloc/map_bloc/map_detail
 import 'package:valorant_app/src/presentation/bloc/main_bloc/player_cards_bloc/player_cards_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/sprays_bloc/sprays_bloc.dart';
+import 'package:valorant_app/src/presentation/bloc/main_bloc/wallpapers_bloc/wallpapers_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapon_detail_bloc/weapon_detail_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_app/src/presentation/bloc/splash_bloc/splash_bloc.dart';
@@ -24,6 +25,7 @@ import 'package:valorant_app/src/presentation/pages/main/maps/maps_page_part.dar
 import 'package:valorant_app/src/presentation/pages/main/player_cards/player_cards_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/ranks/ranks_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/sprays/sprays_page_part.dart';
+import 'package:valorant_app/src/presentation/pages/main/wallpapers/wallpapers_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/weapons/weapon_detail/weapon_detail_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/main/weapons/weapons_page_part.dart';
 import 'package:valorant_app/src/presentation/pages/splash/splash_page_part.dart';
@@ -177,6 +179,20 @@ final GoRouter router = GoRouter(
       builder: (_, __) => BlocProvider(
         create: (_) => sl<MapDetailBloc>(),
         child: MapDetailPage(uuid: __.extra! as String),
+      ),
+    ),
+
+    /// wallpapers
+
+    GoRoute(
+      path: Routes.wallpapers,
+      name: Routes.wallpapers,
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<WallpapersBloc>()
+          ..add(
+            const WallpapersGetAllEvent(),
+          ),
+        child: const WallpapersPage(),
       ),
     ),
 

@@ -86,6 +86,11 @@ final class LocalSource {
         '${AppKeys.mapDetail}_$uuid',
       );
 
+  // /// WALLPAPERS ----------------------------------------------
+  // Future<void> setWallpapers(List<String> wallpapers) async {
+  //   await box.put(AppKeys.wallpapers, wallpapers);
+  // }
+
   /// OTHER ----------------------------------------------
 
   String get locale => box.get(
