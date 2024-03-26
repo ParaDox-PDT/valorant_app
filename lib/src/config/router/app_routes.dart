@@ -191,6 +191,9 @@ final GoRouter router = GoRouter(
         create: (_) => sl<WallpapersBloc>()
           ..add(
             const WallpapersGetAllEvent(),
+          )
+          ..add(
+            const WallpapersGetDirectoryEvent(),
           ),
         child: const WallpapersPage(),
       ),

@@ -19,3 +19,10 @@ final class WallpapersLaunchUrlEvent extends WallpapersEvent {
   @override
   List<Object?> get props => [urlImage];
 }
+
+final class WallpapersGetDirectoryEvent extends WallpapersEvent {
+  const WallpapersGetDirectoryEvent();
+
+  @override
+  List<Object?> get props => [];
+}

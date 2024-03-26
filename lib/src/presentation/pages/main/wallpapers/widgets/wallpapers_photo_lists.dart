@@ -22,9 +22,13 @@ List<Widget> wallpapersPhotos(
       wallpapers.length,
       (index) => WallpapersPhotoItem(
         imageUrl: wallpapers[index].imageUrl ?? 'null',
-        onTap: () => bloc.add(
-          WallpapersLaunchUrlEvent(
-              urlImage: wallpapers[index].imageUrl ?? 'null'),
-        ),
+        onTap: () async {
+          await FlutterDownloader.enqueue(
+            url: wallpapers[index].imageUrl ?? 'null',
+            saveInPublicStorage: true,
+            savedDir:
+                bloc.state.directory?.path ?? '/storage/emulated/0/Download',
+          );
+        },
       ),
     );

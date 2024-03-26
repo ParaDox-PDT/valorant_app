@@ -7,6 +7,12 @@ Future<void> init() async {
   /// External
   await initHive();
 
+  /// File Downloader initialize
+  await FlutterDownloader.initialize(
+    debug: kDebugMode,
+    ignoreSsl: true,
+  );
+
   sl.registerLazySingleton(
     () => Dio()
       ..options = BaseOptions(

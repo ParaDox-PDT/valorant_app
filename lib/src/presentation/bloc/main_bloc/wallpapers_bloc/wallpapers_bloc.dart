@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:valorant_app/src/core/platform/network_info.dart';
 import 'package:valorant_app/src/data/models/bloc_status.dart';
@@ -17,6 +21,7 @@ class WallpapersBloc extends Bloc<WallpapersEvent, WallpapersState> {
   }) : super(const WallpapersState()) {
     on<WallpapersGetAllEvent>(_onGetWallpapers);
     on<WallpapersLaunchUrlEvent>(_launchUrl);
+    on<WallpapersGetDirectoryEvent>(_onGetDownloadDirectory);
   }
 
   final WallpapersRepository wallpapersRepository;
@@ -46,8 +51,8 @@ class WallpapersBloc extends Bloc<WallpapersEvent, WallpapersState> {
           emit(
             state.copyWith(
                 wallpapersStatus: BlocStatus.success,
-                wallpapers: r.isEmpty?state.wallpapers:r,
-                limit: r.isEmpty? state.limit:state.limit + 10),
+                wallpapers: r.isEmpty ? state.wallpapers : r,
+                limit: r.isEmpty ? state.limit : state.limit + 10),
           );
         },
       );
@@ -70,6 +75,26 @@ class WallpapersBloc extends Bloc<WallpapersEvent, WallpapersState> {
     }
     emit(
       state.copyWith(launchUrlStatus: BlocStatus.initial),
+    );
+  }
+
+  Future<void> _onGetDownloadDirectory(
+      WallpapersGetDirectoryEvent event, Emitter<WallpapersState> emit) async {
+    Directory? directory;
+    try {
+      if (Platform.isIOS) {
+        directory = await getApplicationDocumentsDirectory();
+      } else {
+        directory = Directory('/storage/emulated/0/Download');
+        if (!await directory.exists()) {
+          directory = await getExternalStorageDirectory();
+        }
+      }
+    } on Exception catch (err) {
+      debugPrint('Cannot get download folder path : $err');
+    }
+    emit(
+      state.copyWith(directory: directory),
     );
   }
 }

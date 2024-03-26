@@ -34,10 +34,12 @@ class _WallpapersPageState extends State<WallpapersPage> with WallpapersMixin {
                               bloc: _bloc),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ),
       );
 }
+
+

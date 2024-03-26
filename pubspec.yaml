@@ -18,7 +18,7 @@ dependencies:
   hive_generator: ^2.0.1
   hive_flutter: ^1.1.0
   # path
-  path_provider: ^2.1.1
+  path_provider: ^2.1.2
   # get it singleton
   get_it: ^7.6.4
   # async
@@ -73,6 +73,11 @@ dependencies:
   chewie: ^1.7.5
   #url_launcher
   url_launcher: ^6.2.5
+  #flutter_downloader
+  flutter_downloader: ^1.11.6
+  #permission_handler
+  permission_handler: ^11.3.0
+
 
 dev_dependencies:
   flutter_test:

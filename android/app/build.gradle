@@ -59,7 +59,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        archivesBaseName = "sample_bloc_mobile_${versionName}_($versionCode)"
+        archivesBaseName = "valorant_${versionName}_($versionCode)"
 
     }
     signingConfigs {

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:valorant_app/src/core/extension/extension.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
 import 'package:valorant_app/src/data/models/bloc_status.dart';
