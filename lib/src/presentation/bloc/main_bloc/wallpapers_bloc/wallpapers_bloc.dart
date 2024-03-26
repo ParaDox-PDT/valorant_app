@@ -36,7 +36,8 @@ class WallpapersBloc extends Bloc<WallpapersEvent, WallpapersState> {
     }
 
     if (await networkInfo.isConnected) {
-      final result = await wallpapersRepository.getWallpapers();
+      final result =
+          await wallpapersRepository.getWallpapers(limit: state.limit);
       result.fold(
         (l) => emit(
           state.copyWith(wallpapersStatus: BlocStatus.error),
@@ -44,9 +45,9 @@ class WallpapersBloc extends Bloc<WallpapersEvent, WallpapersState> {
         (r) {
           emit(
             state.copyWith(
-              wallpapersStatus: BlocStatus.success,
-              wallpapers: r,
-            ),
+                wallpapersStatus: BlocStatus.success,
+                wallpapers: r.isEmpty?state.wallpapers:r,
+                limit: r.isEmpty? state.limit:state.limit + 10),
           );
         },
       );

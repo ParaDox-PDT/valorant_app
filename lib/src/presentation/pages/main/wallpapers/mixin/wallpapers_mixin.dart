@@ -9,6 +9,11 @@ mixin WallpapersMixin on State<WallpapersPage> {
     super.initState();
     _bloc = context.read<WallpapersBloc>();
     _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        _bloc.add(const WallpapersGetAllEvent());
+      }
+    });
   }
 
   @override
