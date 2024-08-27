@@ -82,7 +82,7 @@ class _InternetConnectionPageState extends State<InternetConnectionPage> {
                   isLoading = false;
                 });
                 if (isConnected) {
-                  if (!mounted) return;
+                  if (!context.mounted) return;
                   Navigator.of(context).pop();
                 }
               },

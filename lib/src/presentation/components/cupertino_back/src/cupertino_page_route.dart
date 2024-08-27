@@ -143,6 +143,7 @@ mixin CupertinoRouteTransitionMixin<T> on PageRoute<T> {
   ///    is currently underway for specific route.
   ///  * [popGestureEnabled], which returns true if a user-triggered pop gesture
   ///    would be allowed.
+  @override
   bool get popGestureInProgress => isPopGestureInProgress(this);
 
   /// Whether a pop gesture can be started by the user.
@@ -154,6 +155,7 @@ mixin CupertinoRouteTransitionMixin<T> on PageRoute<T> {
   /// true first.
   ///
   /// This should only be used between frames, not during build.
+  @override
   bool get popGestureEnabled => _isPopGestureEnabled(this);
 
   static bool _isPopGestureEnabled<T>(PageRoute<T> route) {
