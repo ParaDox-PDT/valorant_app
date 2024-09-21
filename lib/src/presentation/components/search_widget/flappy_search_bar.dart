@@ -403,7 +403,7 @@ class SearchBarState<T> extends State<SearchBar<T>>
                             maxHeight: 36,
                           ),
                           style: const ButtonStyle(
-                            padding: MaterialStatePropertyAll(EdgeInsets.zero),
+                            padding: WidgetStatePropertyAll(EdgeInsets.zero),
                           ),
                           iconSize: 18,
                           icon: const Icon(

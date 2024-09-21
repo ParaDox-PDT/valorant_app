@@ -15,7 +15,7 @@ class Agents {
     this.data,
   });
 
-  Agents.fromJson(dynamic json) {
+  Agents.fromJson(json) {
     status = json['status'];
     if (json['data'] != null) {
       data = [];
@@ -80,7 +80,7 @@ class AgentsData {
     this.voiceLine,
   });
 
-  AgentsData.fromJson(dynamic json) {
+  AgentsData.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     description = json['description'];
@@ -253,7 +253,7 @@ class AgentsAbilities {
     this.displayIcon,
   });
 
-  AgentsAbilities.fromJson(dynamic json) {
+  AgentsAbilities.fromJson(json) {
     slot = json['slot'];
     displayName = json['displayName'];
     description = json['description'];
@@ -307,7 +307,7 @@ class AgentsRole {
     this.assetPath,
   });
 
-  AgentsRole.fromJson(dynamic json) {
+  AgentsRole.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     description = json['description'];

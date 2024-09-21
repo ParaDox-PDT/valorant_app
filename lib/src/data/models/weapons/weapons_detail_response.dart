@@ -18,7 +18,7 @@ class WeaponsDetailResponse {
     this.data,
   });
 
-  WeaponsDetailResponse.fromJson(dynamic json) {
+  WeaponsDetailResponse.fromJson(json) {
     status = json['status'];
     data = json['data'] != null ? WeaponsData.fromJson(json['data']) : null;
   }

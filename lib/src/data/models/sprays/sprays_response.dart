@@ -16,7 +16,7 @@ class SpraysResponse {
     this.data,
   });
 
-  SpraysResponse.fromJson(dynamic json) {
+  SpraysResponse.fromJson(json) {
     status = json['status'];
     if (json['data'] != null) {
       data = [];
@@ -72,7 +72,7 @@ class SpraysData {
     this.levels,
   });
 
-  SpraysData.fromJson(dynamic json) {
+  SpraysData.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     category = json['category'];
@@ -123,7 +123,7 @@ class SpraysData {
   SpraysData copyWith({
     String? uuid,
     String? displayName,
-    dynamic category,
+    dynamic  category,
     dynamic themeUuid,
     bool? isNullSpray,
     bool? hideIfNotOwned,
@@ -187,7 +187,7 @@ class SpraysLevels {
     this.assetPath,
   });
 
-  SpraysLevels.fromJson(dynamic json) {
+  SpraysLevels.fromJson(json) {
     uuid = json['uuid'];
     sprayLevel = json['sprayLevel'];
     displayName = json['displayName'];

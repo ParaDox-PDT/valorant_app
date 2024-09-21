@@ -6,7 +6,7 @@ class AgentDetail {
       this.status, 
       this.data,});
 
-  AgentDetail.fromJson(dynamic json) {
+  AgentDetail.fromJson(json) {
     status = json['status'];
     data = json['data'] != null ? AgentDetailData.fromJson(json['data']) : null;
   }
@@ -55,7 +55,7 @@ class AgentDetailData {
       this.abilities, 
       this.voiceLine,});
 
-  AgentDetailData.fromJson(dynamic json) {
+  AgentDetailData.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     description = json['description'];
@@ -110,7 +110,7 @@ AgentDetailData copyWith({  String? uuid,
   String? displayName,
   String? description,
   String? developerName,
-  dynamic characterTags,
+ dynamic characterTags,
   String? displayIcon,
   String? displayIconSmall,
   String? bustPortrait,
@@ -193,7 +193,7 @@ class AgentDetailAbilities {
       this.description, 
       this.displayIcon,});
 
-  AgentDetailAbilities.fromJson(dynamic json) {
+  AgentDetailAbilities.fromJson(json) {
     slot = json['slot'];
     displayName = json['displayName'];
     description = json['description'];
@@ -233,7 +233,7 @@ class AgentDetailRole {
       this.displayIcon, 
       this.assetPath,});
 
-  AgentDetailRole.fromJson(dynamic json) {
+  AgentDetailRole.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     description = json['description'];

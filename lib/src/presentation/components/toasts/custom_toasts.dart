@@ -24,10 +24,10 @@ Widget customToast(
     DecoratedBox(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
-          color: isConnectError ? colorLightScheme.onBackground : color,
+          color: isConnectError ? colorLightScheme.onSurface : color,
           border: Border.all(
               color: isConnectError
-                  ? colorLightScheme.onBackground
+                  ? colorLightScheme.onSurface
                   : Colors.transparent)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -38,7 +38,7 @@ Widget customToast(
                 ? SvgPicture.asset(AppIcons.backArrow)
                 : Icon(
                     Icons.check,
-                    color: colorLightScheme.onBackground,
+                    color: colorLightScheme.onSurface,
                   ),
             12.g,
             Expanded(

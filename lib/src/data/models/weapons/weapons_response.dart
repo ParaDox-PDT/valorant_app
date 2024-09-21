@@ -17,7 +17,7 @@ class WeaponsResponse {
     this.data,
   });
 
-  WeaponsResponse.fromJson(dynamic json) {
+  WeaponsResponse.fromJson(json) {
     status = json['status'];
     if (json['data'] != null) {
       data = [];
@@ -70,7 +70,7 @@ class WeaponsData {
     this.skins,
   });
 
-  WeaponsData.fromJson(dynamic json) {
+  WeaponsData.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     category = json['category'];
@@ -179,7 +179,7 @@ class WeaponsSkins {
     this.levels,
   });
 
-  WeaponsSkins.fromJson(dynamic json) {
+  WeaponsSkins.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     themeUuid = json['themeUuid'];
@@ -278,7 +278,7 @@ class WeaponsLevels {
     this.assetPath,
   });
 
-  WeaponsLevels.fromJson(dynamic json) {
+  WeaponsLevels.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     levelItem = json['levelItem'];
@@ -346,7 +346,7 @@ class WeaponsChromas {
     this.assetPath,
   });
 
-  WeaponsChromas.fromJson(dynamic json) {
+  WeaponsChromas.fromJson(json) {
     uuid = json['uuid'];
     displayName = json['displayName'];
     displayIcon = json['displayIcon'];
@@ -423,7 +423,7 @@ class WeaponsShopData {
     this.assetPath,
   });
 
-  WeaponsShopData.fromJson(dynamic json) {
+  WeaponsShopData.fromJson(json) {
     cost = json['cost'];
     category = json['category'];
     shopOrderPriority = json['shopOrderPriority'];
@@ -466,7 +466,7 @@ class WeaponsShopData {
     String? categoryText,
     WeaponsGridPosition? gridPosition,
     bool? canBeTrashed,
-    dynamic image,
+    dynamic  image,
     String? newImage,
     dynamic newImage2,
     String? assetPath,
@@ -515,7 +515,7 @@ class WeaponsGridPosition {
     this.column,
   });
 
-  WeaponsGridPosition.fromJson(dynamic json) {
+  WeaponsGridPosition.fromJson(json) {
     row = json['row'];
     column = json['column'];
   }
@@ -567,7 +567,7 @@ class WeaponsStats {
     this.damageRanges,
   });
 
-  WeaponsStats.fromJson(dynamic json) {
+  WeaponsStats.fromJson(json) {
     fireRate = json['fireRate'];
     magazineSize = json['magazineSize'];
     runSpeedMultiplier = json['runSpeedMultiplier'];
@@ -699,7 +699,7 @@ class WeaponsDamageRanges {
     this.legDamage,
   });
 
-  WeaponsDamageRanges.fromJson(dynamic json) {
+  WeaponsDamageRanges.fromJson(json) {
     rangeStartMeters = json['rangeStartMeters'];
     rangeEndMeters = json['rangeEndMeters'];
     headDamage = json['headDamage'];
@@ -759,7 +759,7 @@ class WeaponsAdsStats {
     this.firstBulletAccuracy,
   });
 
-  WeaponsAdsStats.fromJson(dynamic json) {
+  WeaponsAdsStats.fromJson(json) {
     zoomMultiplier = json['zoomMultiplier'];
     fireRate = json['fireRate'];
     runSpeedMultiplier = json['runSpeedMultiplier'];

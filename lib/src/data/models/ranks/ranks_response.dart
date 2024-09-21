@@ -17,7 +17,7 @@ class RanksResponse {
     this.data,
   });
 
-  RanksResponse.fromJson(dynamic json) {
+  RanksResponse.fromJson(json) {
     status = json['status'];
     data = json['data'] != null ? RanksData.fromJson(json['data']) : null;
   }
@@ -59,7 +59,7 @@ class RanksData {
     this.assetPath,
   });
 
-  RanksData.fromJson(dynamic json) {
+  RanksData.fromJson(json) {
     uuid = json['uuid'];
     assetObjectName = json['assetObjectName'];
     if (json['tiers'] != null) {
@@ -124,7 +124,7 @@ class RanksTiers {
     this.rankTriangleUpIcon,
   });
 
-  RanksTiers.fromJson(dynamic json) {
+  RanksTiers.fromJson(json) {
     tier = json['tier'];
     tierName = json['tierName'];
     division = json['division'];
