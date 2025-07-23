@@ -35,16 +35,16 @@ Future<void> init() async {
         if (Platform.isAndroid) {
           await Navigator.push(
             rootNavigatorKey.currentContext!,
-            MaterialPageRoute(builder: (context) => const InternetConnectionPage()),
+            MaterialPageRoute<dynamic>(builder: (context) => const InternetConnectionPage()),
           );
         } else {
           await Navigator.push(
             rootNavigatorKey.currentContext!,
-            CupertinoPageRoute(builder: (context) => const InternetConnectionPage()),
+            CupertinoPageRoute<dynamic>(builder: (context) => const InternetConnectionPage()),
           );
         }
       },
-      logPrint: (String message) {
+      logPrint: (message) {
         debugPrint('Connection error:$message');
       },
     ),

@@ -21,7 +21,7 @@ final appTheme = ThemeData(
   materialTapTargetSize: MaterialTapTargetSize.padded,
   textButtonTheme: const TextButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
+      padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
     ),
   ),
   dividerTheme: const DividerThemeData(thickness: 1),
@@ -34,7 +34,6 @@ final ThemeData lightTheme = appTheme.copyWith(
   ],
   primaryColor: colorLightScheme.primary,
   colorScheme: colorLightScheme,
-  dialogBackgroundColor: colorLightScheme.surface,
   scaffoldBackgroundColor: colorLightScheme.background,
   cardColor: Colors.white,
   canvasColor: Colors.white,
@@ -45,7 +44,7 @@ final ThemeData lightTheme = appTheme.copyWith(
     thickness: 1,
     color: Color(0xFFF5F5F5),
   ),
-  dialogTheme: const DialogTheme(
+  dialogTheme: const DialogThemeData(
     backgroundColor: Colors.white,
     surfaceTintColor: Colors.white,
     shape: RoundedRectangleBorder(
@@ -59,8 +58,8 @@ final ThemeData lightTheme = appTheme.copyWith(
     shadowColor: Colors.black45,
   ),
   scrollbarTheme: ScrollbarThemeData(
-    thickness: MaterialStateProperty.resolveWith((states) => 3),
-    thumbColor: MaterialStateProperty.resolveWith((states) => colorLightScheme.secondary),
+    thickness: WidgetStateProperty.resolveWith((states) => 3),
+    thumbColor: WidgetStateProperty.resolveWith((states) => colorLightScheme.secondary),
     interactive: true,
 
   ),
@@ -75,25 +74,25 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.resolveWith(
+      foregroundColor: WidgetStateProperty.resolveWith(
         (states) => Colors.white,
       ),
-      backgroundColor: MaterialStateProperty.resolveWith(
+      backgroundColor: WidgetStateProperty.resolveWith(
         (states) {
-          if (states.contains(MaterialState.disabled)) {
+          if (states.contains(WidgetState.disabled)) {
             return Colors.grey;
           }
           return colorLightScheme.primary;
         },
       ),
-      textStyle: MaterialStatePropertyAll(ThemeTextStyles.light.buttonStyle),
-      elevation: const MaterialStatePropertyAll(0),
-      shape: const MaterialStatePropertyAll(
+      textStyle: WidgetStatePropertyAll(ThemeTextStyles.light.buttonStyle),
+      elevation: const WidgetStatePropertyAll(0),
+      shape: const WidgetStatePropertyAll(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
       ),
-      fixedSize: const MaterialStatePropertyAll(Size(double.infinity, 48)),
+      fixedSize: const WidgetStatePropertyAll(Size(double.infinity, 48)),
     ),
   ),
   inputDecorationTheme: const InputDecorationTheme(),
@@ -121,12 +120,12 @@ final ThemeData lightTheme = appTheme.copyWith(
     unselectedItemColor: const Color(0xffA0A9B6),
     selectedItemColor: colorLightScheme.primary,
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     indicatorColor: colorLightScheme.primary,
     labelColor: colorLightScheme.primary,
     unselectedLabelColor: const Color(0xFF616161),
     dividerColor: Colors.transparent,
-    overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+    overlayColor: const WidgetStatePropertyAll(Colors.transparent),
     labelStyle: const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w500,
@@ -146,12 +145,12 @@ final ThemeData lightTheme = appTheme.copyWith(
     elevation: 0,
     backgroundColor: Colors.white,
     height: kToolbarHeight,
-    iconTheme: MaterialStateProperty.resolveWith<IconThemeData>(
+    iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
       (states) => const IconThemeData(
         color: Colors.black,
       ),
     ),
-    labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+    labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
       (states) => ThemeTextStyles.light.appBarTitle,
     ),
   ),
@@ -277,7 +276,7 @@ final ThemeData darkTheme = appTheme.copyWith(
       ),
     ),
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     labelColor: Colors.white,
     indicator: BoxDecoration(
       color: Colors.transparent,
