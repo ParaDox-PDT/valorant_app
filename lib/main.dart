@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:valorant_app/src/data/source/local_source.dart';
@@ -19,8 +20,7 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   hiveRegister();
 
-  if (defaultTargetPlatform != TargetPlatform.linux &&
-      defaultTargetPlatform != TargetPlatform.windows) {
+  if (defaultTargetPlatform != TargetPlatform.linux && defaultTargetPlatform != TargetPlatform.windows) {
     await NotificationService.initialize();
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -39,13 +39,12 @@ void main() async {
 
   /// global CERTIFICATE_VERIFY_FAILEd_KEY
   HttpOverrides.global = MyHttpOverrides();
-  runApp(
-    ModelBinding(
-      initialModel: AppOptions(
-        themeMode: localSource.themeMode,
-        locale: Locale(localSource.locale),
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) => runApp(
+      ModelBinding(
+        initialModel: AppOptions(themeMode: localSource.themeMode, locale: Locale(localSource.locale)),
+        child: const MainApp(),
       ),
-      child: const MainApp(),
     ),
   );
   FlutterNativeSplash.remove();
@@ -54,8 +53,7 @@ void main() async {
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) =>
-      super.createHttpClient(context)
-        ..badCertificateCallback = (cert, host, port) => true;
+      super.createHttpClient(context)..badCertificateCallback = (cert, host, port) => true;
 }
 
 /// flutter pub run flutter_launcher_icons:main

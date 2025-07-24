@@ -18,14 +18,6 @@ val localProperties = Properties().apply {
     }
 }
 
-// key.properties dan signingConfig parametrlarini o‘qiymiz
-val keystoreProperties = Properties().apply {
-    val keystorePropertiesFile = rootProject.file("key.properties")
-    if (keystorePropertiesFile.exists()) {
-        load(FileInputStream(keystorePropertiesFile))
-    }
-}
-
 // Flutter tomonidan generate qilingan versionCode va versionName
 val flutterVersionCode = localProperties.getProperty("flutter.versionCode")?.toInt() ?: 1
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
@@ -34,6 +26,17 @@ val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "
 val flutterTargetSdk = localProperties.getProperty("flutter.targetSdkVersion")?.toInt() ?: 33
 val flutterNdkVersion = localProperties.getProperty("flutter.ndkVersion")
 
+// Key.properties faylni o‘qib, Properties obyektiga yuklaymiz
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = Properties().apply {
+    load(FileInputStream(keystorePropertiesFile))
+}
+
+val signingStorePassword: String = keystoreProperties.getProperty("storePassword")
+val signingKeyAlias:      String = keystoreProperties.getProperty("keyAlias")
+val signingKeyPassword:   String = keystoreProperties.getProperty("keyPassword")
+println("🔒 Loaded signing config from android/key.properties")
+
 android {
     namespace = "valorant_guide.uz"
     compileSdk = 35
@@ -41,7 +44,7 @@ android {
     defaultConfig {
         applicationId = "valorant_guide.uz"
         minSdk = 21
-        targetSdk = flutterTargetSdk
+        targetSdk = 35
         versionCode = flutterVersionCode
         versionName = flutterVersionName
         multiDexEnabled = true
@@ -68,10 +71,14 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String?
-            keyPassword = keystoreProperties["keyPassword"] as String?
-            storeFile = (keystoreProperties["storeFile"] as String?)?.let { file(it) }
-            storePassword = keystoreProperties["storePassword"] as String?
+            val keystoreFile = file("keystore/key.jks")
+            if (!keystoreFile.exists()) {
+                throw GradleException("❌ Keystore file not found: $keystoreFile")
+            }
+            storeFile     = keystoreFile
+            storePassword = signingStorePassword
+            keyAlias      = signingKeyAlias
+            keyPassword   = signingKeyPassword
         }
     }
 
@@ -86,6 +93,9 @@ android {
             // Agar key.properties dan release uchun signingConfigs to‘g‘ri kelmasa,
             // bunda debug bilan ham ishga tushirish mumkin:
             signingConfig = signingConfigs.getByName("release")
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
 }

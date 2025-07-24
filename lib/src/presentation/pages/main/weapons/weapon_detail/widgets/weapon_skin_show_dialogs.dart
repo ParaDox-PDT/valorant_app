@@ -53,6 +53,7 @@ void showSkinModalBottomSheet(
                                 color: context.colorScheme.secondary,
                               ),
                             ),
+                            width: double.infinity,
                             fadeOutDuration: const Duration(milliseconds: 300),
                             fit: BoxFit.contain,
                             errorWidget: (context, url, error) => Center(

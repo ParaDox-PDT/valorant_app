@@ -2,6 +2,7 @@ part of '../main_page_part.dart';
 
 class MainPageWallpapersButton extends StatelessWidget {
   const MainPageWallpapersButton({super.key, required this.onTap});
+
   final VoidCallback onTap;
 
   @override
@@ -10,15 +11,13 @@ class MainPageWallpapersButton extends StatelessWidget {
     child: ZoomTapAnimation(
       onTap: onTap,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          border:
-          Border.all(color: context.colorScheme.secondary),
-        ),
+        decoration: BoxDecoration(border: Border.all(color: context.colorScheme.secondary)),
         child: Stack(
           alignment: Alignment.center,
           children: [
-           const Image(
+            const Image(
               image: AssetImage(AppImages.wallpapers),
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
             Text(

@@ -12,7 +12,7 @@ class WallpapersPhotoItem extends StatelessWidget {
     child: SlideInLeft(
       from: 200,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: AppUtils.kPaddingVertical8,
             child: Column(
               children: [
                 DecoratedBox(
@@ -29,6 +29,10 @@ class WallpapersPhotoItem extends StatelessWidget {
                       },
                       child: CachedNetworkImage(
                         imageUrl: imageUrl,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+
+
                       ),
                     ),
                   ),

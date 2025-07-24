@@ -6,6 +6,7 @@ import 'package:valorant_app/src/config/themes/themes.dart';
 import 'package:valorant_app/src/core/constants/constants.dart';
 import 'package:valorant_app/src/core/extension/extension.dart';
 import 'package:valorant_app/src/core/utils/utils.dart';
+import 'package:valorant_app/src/data/models/bloc_status.dart';
 import 'package:valorant_app/src/data/models/ranks/ranks_response.dart';
 import 'package:valorant_app/src/presentation/bloc/main_bloc/ranks_bloc/ranks_bloc.dart';
 import 'package:valorant_app/src/presentation/components/custom_sliver_app_bar/custom_sliver_app_bar.dart';

@@ -38,7 +38,7 @@ class MainPageButton extends StatelessWidget {
                     child: Image(
                       image: AssetImage(image),
                       width: 150.w,
-                      height: 135.h,
+                      // height: 135.h,
                       fit: BoxFit.cover,
                     ),
                   )

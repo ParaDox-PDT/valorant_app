@@ -10,7 +10,7 @@ class WeaponDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SliverToBoxAdapter(
         child: SizedBox(
-          height: context.isMobile ? 320.h : 600.h,
+          height: 320.h,
           child: Stack(
             children: [
               CustomTriangle(

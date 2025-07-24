@@ -10,8 +10,9 @@ class MapsPage extends StatefulWidget {
 class _MapsPageState extends State<MapsPage> {
   @override
   Widget build(BuildContext context) => BlocBuilder<MapBloc, MapState>(
-        buildWhen: (p, c) => p != c,
-        builder: (__, state) => Scaffold(
+    buildWhen: (p, c) => p != c,
+    builder:
+        (__, state) => Scaffold(
           backgroundColor: __.colorScheme.primary,
           body: CustomScrollView(
             slivers: [
@@ -29,5 +30,5 @@ class _MapsPageState extends State<MapsPage> {
             ],
           ),
         ),
-      );
+  );
 }

@@ -11,7 +11,7 @@ class AgentDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SliverToBoxAdapter(
         child: SizedBox(
-          height: context.isMobile ? 450.h : 600.h,
+          height: 450.h ,
           child: Stack(
             children: [
               CustomTriangle(
