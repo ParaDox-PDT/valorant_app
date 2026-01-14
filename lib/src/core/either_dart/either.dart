@@ -20,13 +20,13 @@ sealed class Either<L, R> {
   bool get isRight => this is Right<L, R>;
 
   /// Get [Left] value, may throw an exception when the value is [Right]
-  L get left => this.fold<L>(
+  L get left => fold<L>(
       (value) => value,
       (right) => throw Exception(
           'Illegal use. You should check isLeft before calling'));
 
   /// Get [Right] value, may throw an exception when the value is [Left]
-  R get right => this.fold<R>(
+  R get right =>fold<R>(
       (left) => throw Exception(
           'Illegal use. You should check isRight before calling'),
       (value) => value);
@@ -109,7 +109,7 @@ sealed class Either<L, R> {
       test ? Right(rightValue()) : Left(leftValue());
 
   @override
-  bool operator ==(Object other) => this.fold(
+  bool operator ==(Object other) => fold(
         (left) => other is Left && left == other.value,
         (right) => other is Right && right == other.value,
       );

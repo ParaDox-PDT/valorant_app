@@ -39,12 +39,12 @@ println("🔒 Loaded signing config from android/key.properties")
 
 android {
     namespace = "valorant_guide.uz"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "valorant_guide.uz"
-        minSdk = 21
-        targetSdk = 35
+        minSdk = flutter.minSdkVersion
+        targetSdk = 36
         versionCode = flutterVersionCode
         versionName = flutterVersionName
         multiDexEnabled = true

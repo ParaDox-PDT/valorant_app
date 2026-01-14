@@ -51,7 +51,7 @@ final ThemeData lightTheme = appTheme.copyWith(
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
   ),
-  bottomAppBarTheme: const BottomAppBarTheme(
+  bottomAppBarTheme: const BottomAppBarThemeData(
     elevation: 1,
     color: Colors.white,
     surfaceTintColor: Colors.white,
